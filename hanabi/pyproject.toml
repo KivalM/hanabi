@@ -10,6 +10,12 @@ dependencies = [
     "torchrl==0.5.0",
     "wandb==0.17.0",
 ]
+requires-python = ">=3.9"
+
+
+[build-system]
+requires = ["setuptools>=61.0.0"]
+build-backend = "setuptools.build_meta"
 
 
 # [tool.ruff]
