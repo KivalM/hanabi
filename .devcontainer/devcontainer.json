@@ -1,0 +1,36 @@
+{
+    "name": "rocm/pytorch",
+    "workspaceFolder": "/workspaces/HonorsProject/${localWorkspaceFolderBasename}",
+    "features": {},
+    // "image": "rocm/pytorch:latest",
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "--device=/dev/kfd",
+        "--device=/dev/dri",
+        "--group-add",
+        "video",
+        "--ipc=host",
+        "--shm-size",
+        "16G"
+    ],
+    // set environment variables    
+    "containerEnv": {
+        "HSA_OVERRIDE_GFX_VERSION": "10.3.0",
+        "PYTORCH_ROCM_ARCH": "gfx1030",
+        "HIP_VISIBLE_DEVICES": "0",
+        "ROCM_PATH": "/opt/rocm"
+    },
+    // extensions to install
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-toolsai.jupyter",
+                "tamasfe.even-better-toml"
+            ]
+        }
+    },
+}

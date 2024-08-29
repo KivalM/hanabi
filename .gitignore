@@ -1,0 +1,12 @@
+.venv
+
+# egg-info
+*.egg-info
+
+wandb
+
+checkpoints
+
+*.cpython-39.pyc
+
+*.pt
