@@ -29,9 +29,10 @@ class DQNAgent(nn.Module):
             multi_step: int,
             gamma: float, # discount factor for multi-step q-learning
             tau: float, # target network update rate - 1 for hard update
-            device: str, # device to run the model on
             # double q-learning arguments
             double: bool,
+            device: str, # device to run the model on
+
     ):
         super(DQNAgent, self).__init__()
         self.policy = DQNPolicy(
@@ -45,7 +46,7 @@ class DQNAgent(nn.Module):
             v_min=v_min,
             v_max=v_max,
             dueling=dueling
-        )        
+        ).to(device)
 
         self.target = DQNPolicy(
             in_dim=in_dim,
@@ -58,7 +59,7 @@ class DQNAgent(nn.Module):
             v_min=v_min,
             v_max=v_max,
             dueling=dueling
-        )
+        ).to(device)
 
         self.target.load_state_dict(self.policy.state_dict())
         self.target.eval()
@@ -68,6 +69,7 @@ class DQNAgent(nn.Module):
         self.gamma = gamma
         self.tau = tau
         self.device = device
+        self.name = 'DQN' + ('-VDN' if vdn else '') + ('-IQL' if not vdn else '') + ('-QMIX' if not vdn else '') + ('-Noisy' if noisy else '') + ('-Distributional' if distributional else '') + ('-Dueling' if dueling else '') + ('-Double' if double else '') + ('-MultiStep' if multi_step > 1 else '')
 
     def update_target(self):
         '''
@@ -84,20 +86,16 @@ class DQNAgent(nn.Module):
         :param epsilon: The epsilon value for epsilon-greedy.
         :return: The action to take.
         '''
-        a = self.policy.act(state, epsilon)
+        observation = torch.tensor(state['observation'], dtype=torch.float32).to(self.device)
+        actions = torch.tensor(state['action_mask']).to(self.device)
+        a = self.policy.act(observation, actions, epsilon)
         actions = a['actions']
         greedy = a['greedy_actions']
 
         return {
-            'actions': actions.detach().cpu().numpy(),
-            'greedy_actions': greedy.detach().cpu().numpy()
+            'action': actions.detach().cpu().numpy(),
+            'greedy_action': greedy.detach().cpu().numpy()
         }
-    
-    def compute_priority(self, state: Dict[str, Union[torch.Tensor, int]]):
-        '''
-        This function computes the priority of a transition.
-        '''
-        return self.policy.compute_priority(state)
     
 
     def compute_loss_and_priority(self, batch: Dict[str, torch.Tensor]):
@@ -123,38 +121,38 @@ class DQNAgent(nn.Module):
         '''
         This function computes the TD error.
         '''
-        policy = self.policy(batch['observation'], batch['legal_actions'], batch['action'])
+        policy = self.policy(batch['observation'], batch['action_mask'], batch['action']['action'])
 
         with torch.no_grad():
-            target = self.target(batch['next_observation'], batch['next_legal_actions'])
+            target = self.target(batch['observation'], batch['action_mask'], policy['greedy_actions'])
 
-        terminals = batch['terminal'].float()
+        terminals = batch['done'].float()
         rewards = batch['reward'].float()
+        # if self.vdn:
+        #     policy = policy.view(policy.size(0), -1, policy.size(-1))
+        #     target = target.view(target.size(0), -1, target.size(-1))
+        policy = policy["actual_q"]
+        target = target["actual_q"]
 
-        if self.vdn:
-            policy = policy.view(policy.size(0), -1, policy.size(-1))
-            target = target.view(target.size(0), -1, target.size(-1))
+        # target = torch.cat(
+        #     [
+        #         target[self.multi_step - 1:],
+        #         torch.zeros_like(target[:self.multi_step - 1])
+        #     ],
+        #     dim=0
+        # )
 
-        target = torch.cat(
-            [
-                target[self.multi_step - 1:],
-                torch.zeros_like(target[:self.multi_step - 1])
-            ],
-            dim=0
-        )
-
-        mask = torch.arange(0, policy.size(0), device=policy.device) + 1
-        mask = mask < self.multi_step
-        mask = mask.float()
+        # mask = torch.arange(0, policy.size(0), device=policy.device) + 1
+        # mask = mask < self.multi_step
+        # mask = mask.float()
 
         # AND the mask with the terminal mask
-        mask = mask * (1 - terminals)
-
+        mask = (1 - terminals)
         target = rewards + (self.gamma ** self.multi_step)  * target
 
         error = policy - target.detach()
-        error = error * mask
-
+        error = error * mask    
+        # assert False
         return error
 
 

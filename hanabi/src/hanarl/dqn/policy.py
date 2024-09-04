@@ -85,7 +85,7 @@ class DQNPolicy(nn.Module):
         else:
             q = self.out_layer(state_encoding)
 
-        assert q.dim() == 2, f"Expected q to have dimension 2, got {q.dim()}"
+        assert q.dim() == 1, f"Expected q to have dimension 1, got {q.dim()}"
 
         # distribute the q values
         if self.distributional:
@@ -93,18 +93,14 @@ class DQNPolicy(nn.Module):
 
         # compute legal q values
         legal_q = (1 + q - q.min()) * legal_actions
-
         # compute the new greedy actions
-        greedy_actions = legal_q.argmax(1).detach()
-
+        greedy_actions = legal_q.argmax(0).detach()
         # choose a random action from each legal action set
-        random_actions = legal_actions.multinomial(1).squeeze(1)
-
+        random_actions = legal_actions.float().multinomial(1).squeeze(-1)
         # if the random number is greater than epsilon, choose the greedy action
-        greedy_mask = torch.rand(legal_actions.size(0)) > epsilon
-
-        # choose the actions based on the epsilon greedy policy
-        actions = torch.where(greedy_mask, greedy_actions, random_actions)
+        greedy_mask = torch.rand(1, device=random_actions.device) > epsilon
+        # # choose the actions based on the epsilon greedy policy
+        actions = torch.where(greedy_mask, greedy_actions, random_actions).squeeze(0)
 
         # [batch_size]
         return {
@@ -121,18 +117,19 @@ class DQNPolicy(nn.Module):
             # [seq_len, batch_size, action_dim] or [batch_size, action_dim]
             legal_actions:Tensor,
             # [seq_len, batch_size, action_dim] or [batch_size, action_dim]
-            actions:Tensor=None,
+            actions:Tensor,
     ) -> Dict[str, Tensor]:
         # check that the dimensions are either 2 or 3 [seq_len, batch_size, obs_dim] or [batch_size, obs_dim]
         assert observation.dim() in [2, 3], f"Expected observation to have dimension 2 or 3, got {observation.dim()}"
 
         two_dim = observation.dim() == 2
-        # TODO: temporary fix, need to handle the case where the observation is 1D
+        # TODO: temporary fix, need to handle the case where the observation is 3D
         assert two_dim, "Only 1 step is supported for now"
+
         if two_dim:
-            observation = observation.unsqueeze(0)
+            observation = observation.unsqueeze(0).float()
             legal_actions = legal_actions.unsqueeze(0)
-            actions = actions.unsqueeze(0)
+            actions = actions.unsqueeze(0) if actions is not None else None
 
         # all the dimensions should be [seq_len(/1), batch_size, dim]
         state_encoding = self.net(observation)
@@ -149,6 +146,7 @@ class DQNPolicy(nn.Module):
         
         # compute legal q values
         legal_q = (1 + q - q.min()) * legal_actions
+
         # compute the q values of the actual actions taken
         if actions is not None:
             actual_q = q.gather(2, actions.unsqueeze(2)).squeeze(2)
@@ -161,7 +159,8 @@ class DQNPolicy(nn.Module):
         if two_dim:
             greedy_actions = greedy_actions.squeeze(0)
             legal_q = legal_q.squeeze(0)
-            actual_q = actual_q.squeeze(0)
+            if actual_q is not None:
+                actual_q = actual_q.squeeze(0)
             state_encoding = state_encoding.squeeze(0)
 
         return {

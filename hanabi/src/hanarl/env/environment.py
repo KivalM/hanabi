@@ -1,16 +1,22 @@
 from pettingzoo.classic import hanabi_v5
+from pettingzoo.utils.wrappers import BaseWrapper
+from pettingzoo.utils.env import ActionType, AECEnv, AgentID, ObsType
 
-
-def make_env(sad=False):
-    players=2
-    colors=2
-    ranks=5
-    hand_size=2
-    max_information_tokens=3
-    max_life_tokens=2
-    observation_type = 'card_knowledge'
-
+def make_env(
+        seed,
+        players,
+        colors,
+        ranks,
+        hand_size,
+        max_information_tokens,
+        max_life_tokens,
+        observation_type,
+        sad,
+        shuffle_colors,
+        
+    ):
     return HanabiEnv(
+        seed=seed,
         players=players,
         colors=colors,
         ranks=ranks,
@@ -18,14 +24,21 @@ def make_env(sad=False):
         max_information_tokens=max_information_tokens,
         max_life_tokens=max_life_tokens,
         observation_type=observation_type,
-        sad=sad
+        sad=sad,
+        shuffle_colors=shuffle_colors
     )
 
-
-
-
-class HanabiEnv(hanabi_v5.env):
-    def __init__(self, sad=False, *args, **kwargs):
+class HanabiEnv(BaseWrapper):
+    def __init__(self, sad, shuffle_colors, *args, **kwargs):
+        env = hanabi_v5.env(
+            players=2,
+            colors=2,
+            ranks=5,
+            hand_size=2,
+            max_information_tokens=3,
+            max_life_tokens=2
+        )
+        super().__init__(env)
         self.players=2
         self.colors=2
         self.ranks=5
@@ -33,15 +46,17 @@ class HanabiEnv(hanabi_v5.env):
         self.max_information_tokens=3
         self.max_life_tokens=2 
         self.sad = sad
-        super().__init__(*args, **kwargs)
-        self.num_actions = super().action_spaces['player_0'].n
-        self.observation_space = super().observation_spaces['player_0'] + (self.num_actions,) if sad else 0
+        self.shuffle_colors = shuffle_colors
+
+        self.in_dim = self.observation_vector_dim[0]
+        self.out_dim = self.action_space('player_0').n
+
         
         self.last_greed_action = None
 
     def step(self, action, greedy_action):
         if self.sad:
-            self.last_greed_action = encode_action_unary(greedy_action, self.num_actions)
+            self.last_greed_action = encode_action_unary(greedy_action, self.out_dim)
         return super().step(action)
 
     def render(self, mode='human'):
