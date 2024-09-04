@@ -31,16 +31,16 @@ class DQN(nn.Module):
         else:
             layer_class=nn.Linear
 
-        self.net = MLP(in_features=state_dim, out_features=hidden_dim, num_cells=hidden_dim, depth=depth, layer_class=layer_class, activate_last_layer=True)
+        self.net = MLP(in_features=state_dim, out_features=hidden_dim, num_cells=hidden_dim, depth=depth, layer_class=layer_class, activate_last_layer=True, activation_class=nn.ReLU)
 
         if duel:
-            self.value = MLP(in_features=hidden_dim, out_features=1, num_cells=hidden_dim, depth=2,)
-            self.advantage = MLP(in_features=hidden_dim, out_features=action_dim, num_cells=hidden_dim, depth=2,)
+            self.value = MLP(in_features=hidden_dim, out_features=1, num_cells=hidden_dim, depth=2,activation_class=nn.ReLU)
+            self.advantage = MLP(in_features=hidden_dim, out_features=action_dim, num_cells=hidden_dim, depth=2,activation_class=nn.ReLU)
 
         if distributional:
             action_dim = (4, action_dim)
 
-        self.out_layer = MLP(in_features=hidden_dim, out_features=action_dim, num_cells=hidden_dim, depth=1, layer_class=layer_class, activate_last_layer=False)
+        self.out_layer = MLP(in_features=hidden_dim, out_features=action_dim, num_cells=hidden_dim, depth=1, layer_class=layer_class, activate_last_layer=False,activation_class=nn.ReLU)
 
     def forward(self, state:TensorDict, sad=False):
         '''
