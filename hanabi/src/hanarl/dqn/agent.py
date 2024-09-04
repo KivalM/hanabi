@@ -100,7 +100,7 @@ class DQNAgent(nn.Module):
         return self.policy.compute_priority(state)
     
 
-    def compute_loss(self, batch: Dict[str, torch.Tensor]):
+    def compute_loss_and_priority(self, batch: Dict[str, torch.Tensor]):
         '''
         This function computes the loss.
         '''

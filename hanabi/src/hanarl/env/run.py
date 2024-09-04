@@ -79,3 +79,16 @@ def collect_data(env, agent, eps, seed, steps=1000, multi_step=1):
         #         reward += sum([t[2] for t in ep_data["transitions"][:multi_step - len(ep_data["transitions"]) + i]])
     
     return data
+
+
+def evaluate(env, agent, eps, seed,  num_eps=100):
+    rewards = []
+    for _ in range(num_eps):
+        data = run_episode_single_agent_vdn(agent, eps, env, seed)
+        rewards.append(data["rewards"])
+    
+    return {
+        "rewards": rewards,
+        "avg_reward": sum([sum(r.values()) for r in rewards]) / num_eps,
+        "max_reward": max([sum(r.values()) for r in rewards])
+    }
