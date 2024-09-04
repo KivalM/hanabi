@@ -123,8 +123,8 @@ class DQNAgent(nn.Module):
         This function computes the TD error.
         '''
         policy = self.policy(batch['observation'], batch['action_mask'], batch['action']['action'])
-        if log:
-            print(policy)
+        # if log:
+        #     print(policy)
         with torch.no_grad():
             target = self.target(batch['next_observation'], batch['next_action_mask'], None)
 

@@ -107,10 +107,8 @@ def evaluate(env, agent, eps, seed,  num_eps=100):
             data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
             rewards.append(data["rewards"])
             lengths.append(len(data['transitions']))
-            print("Actions:", [t['action']['action'] for t in data['transitions']])
-            print("Rewards:", [t['reward'] for t in data['transitions']])
 
-        print(rewards)
+
         agent.policy.train()
 
 
