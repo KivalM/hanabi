@@ -1,6 +1,7 @@
 from ..dqn.agent import DQNAgent
 from tensordict import TensorDict
 from pettingzoo.utils.wrappers import OrderEnforcingWrapper
+import torch
 
 def run_episode_single_agent_vdn(
         agent: DQNAgent,
@@ -76,26 +77,29 @@ def run_episode_single_agent_vdn(
 
 
 def collect_data(env, agent, buffer, eps, seed, steps=1000, multi_step=1):
-        step = 0
-        while step < steps:
-            # generate a random seed
-            new_seed = (seed + step + 1) * 997 % 999999999
-            ep_data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
-            # data.extend(ep_data["transitions"])
-            for i, transition in enumerate(ep_data["transitions"]):
-                buffer.add(transition)
-                step += 1
+        with torch.no_grad():
+            agent.policy.eval()
+            while steps > 0:
+                # generate a random seed
+                new_seed = (seed + steps + 1) * 997 % 999999999
+                ep_data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
+                # data.extend(ep_data["transitions"])
+                for i, transition in enumerate(ep_data["transitions"]):
+                    buffer.add(transition)
+                    steps -= 1
+
 
 
 def evaluate(env, agent, eps, seed,  num_eps=100):
-    rewards = []
-    for ep in range(num_eps):
-        new_seed = (seed + ep + 1) * 997 % 999999999 
-        data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
-        rewards.append(data["rewards"])
-    
-    return {
-        # "rewards": rewards,
-        "avg_reward": sum([max(r.values()) for r in rewards]) / num_eps,
-        "max_reward": max([max(r.values()) for r in rewards])
-    }
+    with torch.no_grad():
+        rewards = []
+        for ep in range(num_eps):
+            new_seed = (seed + ep + 1) * 997 % 999999999 
+            data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
+            rewards.append(data["rewards"])
+        
+        return {
+            # "rewards": rewards,
+            "avg_reward": sum([max(r.values()) for r in rewards]) / num_eps,
+            "max_reward": max([max(r.values()) for r in rewards]),
+        }
