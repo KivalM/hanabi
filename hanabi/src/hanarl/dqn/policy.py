@@ -59,9 +59,9 @@ class DQNPolicy(nn.Module):
 
         if dueling:
             self.value = nn.Linear(hidden_dim, 1)
-            self.advantage = nn.Linear(hidden_dim, out_dim)
+            self.advantage = MLP(hidden_dim, out_dim)
         else:
-            self.out_layer = nn.Linear(hidden_dim, out_dim)
+            self.out_layer = MLP(hidden_dim, out_dim)
     
     def act(
             self,
@@ -85,11 +85,12 @@ class DQNPolicy(nn.Module):
         else:
             q = self.out_layer(state_encoding)
 
-        assert q.dim() == 1, f"Expected q to have dimension 1, got {q.dim()}"
 
         # distribute the q values
         if self.distributional:
             q = self._distributional(q)
+
+        assert q.dim() == 1, f"Expected q to have dimension 1, got {q.dim()}"
 
         # compute legal q values
         legal_q = (1 + q - q.min()) * legal_actions
@@ -139,10 +140,13 @@ class DQNPolicy(nn.Module):
         else:
             q = self.out_layer(state_encoding)
 
-        assert q.dim() == 3, f"Expected q to have dimension 3, got {q.dim()}"
 
         if self.distributional:
             q = self._distributional(q)
+
+
+        assert q.dim() == 3, f"Expected q to have dimension 3, got {q.dim()}"
+        
         # print("Q values")
         # print(q)
         # compute legal q values
@@ -186,12 +190,28 @@ class DQNPolicy(nn.Module):
         return q
 
     def _distributional(self, q):
+        two_dim = q.dim() == 2
+        four_dim = q.dim() == 4
+        if two_dim:
+            q = q.unsqueeze(0)
+        if four_dim:
+            q = q.squeeze(0)
+
         # reshape the output tensor to (batch_size, 4, -1)
         q = q.view(q.size(0), self.n_atoms, -1)
+        
         # compute the probabilities
         q = nn.functional.softmax(q, dim=-1)
+
         # compute the atoms
-        atoms = torch.linspace(self.v_min, self.v_max, self.n_atoms, device=q.device)
+        atoms = torch.linspace(self.v_min, self.v_max, self.n_atoms, device=q.device).unsqueeze(0).unsqueeze(2)
         # compute the q values
-        q = (atoms * q).sum(-1)
+        q = (atoms * q).sum(1)
+
+        if two_dim:
+            q = q.squeeze(0)
+
+        if four_dim:
+            q = q.unsqueeze(0)
+        
         return q

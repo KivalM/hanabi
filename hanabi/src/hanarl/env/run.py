@@ -59,7 +59,7 @@ def run_episode_single_agent_vdn(
                 "observation": last_observations[player]['observation'],
                 "action_mask": last_observations[player]['action_mask'],
                 "action": last_actions[player],
-                "reward":reward,
+                "reward": max(0, reward),
                 "next_observation": observation['observation'],
                 "next_action_mask": observation['action_mask'],
                 "done": done
@@ -107,8 +107,12 @@ def evaluate(env, agent, eps, seed,  num_eps=100):
             data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
             rewards.append(data["rewards"])
             lengths.append(len(data['transitions']))
+            print("Actions:", [t['action']['action'] for t in data['transitions']])
+            print("Rewards:", [t['reward'] for t in data['transitions']])
+
         print(rewards)
         agent.policy.train()
+
 
         return {
             # "rewards": rewards,

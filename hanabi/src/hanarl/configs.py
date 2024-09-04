@@ -4,7 +4,7 @@ import torch
 @dataclass
 class Config:
     # General
-    seed: int = 999
+    seed: int = 0
     wandb: bool = False
     wandb_project: str = 'hanabi'
 
@@ -20,9 +20,9 @@ class Config:
     shuffle_colors: bool = False
 
     # Agent
-    hidden_dim: int = 512
-    depth: int = 4
-    noisy: bool = True
+    hidden_dim: int = 256
+    depth: int = 5
+    noisy: bool = False
     distributional: bool = False
     n_atoms: int = 51
     v_min: int = 0
@@ -41,23 +41,25 @@ class Config:
     # Training
     num_epochs: int = 100
     epoch_length: int = 10
-    update_target: int = 5
-    lr: float = 6.25e-5
-    clip_grad: float = 5
+    update_target: int = 1
+    lr: float = 1e-4
+    clip_grad: float = 15.0
     start_eps: float = 1.0
     end_eps: float = 0.01
     eps_decay: float = 0.99
 
     # Replay Buffer
     prioritized: bool = True
+    # lower alpha means more prioritization i.e more weight to TD error
     alpha: float = 0.9
+    # lower beta means more importance sampling
     beta: float = 0.6
     buffer_size: int = 200000
     batch_size: int = 128
     burn_in: int = 10_000
 
     # Evaluation
-    num_eps: int = 50
+    num_eps: int = 100
     eval_eps: int = 0
 
     # Save
