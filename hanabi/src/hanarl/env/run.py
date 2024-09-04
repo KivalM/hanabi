@@ -2,6 +2,7 @@ from ..dqn.agent import DQNAgent
 from tensordict import TensorDict
 from pettingzoo.utils.wrappers import OrderEnforcingWrapper
 import torch
+from torchrl.data.replay_buffers import PrioritizedReplayBuffer
 
 def run_episode_single_agent_vdn(
         agent: DQNAgent,
@@ -58,7 +59,7 @@ def run_episode_single_agent_vdn(
                 "observation": last_observations[player]['observation'],
                 "action_mask": last_observations[player]['action_mask'],
                 "action": last_actions[player],
-                "reward": reward,
+                "reward":reward,
                 "next_observation": observation['observation'],
                 "next_action_mask": observation['action_mask'],
                 "done": done
@@ -76,30 +77,43 @@ def run_episode_single_agent_vdn(
     }
 
 
-def collect_data(env, agent, buffer, eps, seed, steps=1000, multi_step=1):
+def collect_data(env, agent:DQNAgent, buffer:PrioritizedReplayBuffer, eps, seed, steps=1000, multi_step=1):
         with torch.no_grad():
             agent.policy.eval()
             while steps > 0:
                 # generate a random seed
                 new_seed = (seed + steps + 1) * 997 % 999999999
                 ep_data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
-                # data.extend(ep_data["transitions"])
+
                 for i, transition in enumerate(ep_data["transitions"]):
-                    buffer.add(transition)
+                    # print("Action:", transition["action"]['action'], "Reward:", transition["reward"], 'greedy_action:', transition["action"]['greedy_action'], "Done:", transition["done"], "eps:", eps)
+                    i = buffer.add(transition)
+                    transition_priority = agent.td_error(transition.to(agent.device).unsqueeze(0), False)
+                    # print('Reward:', transition["reward"], "Priority:", torch.abs(transition_priority).detach().item())
+                    buffer.update_priority(i, torch.abs(transition_priority).item())
                     steps -= 1
+            
+            agent.policy.train()
 
 
 
 def evaluate(env, agent, eps, seed,  num_eps=100):
     with torch.no_grad():
+        agent.policy.eval()
         rewards = []
+        lengths = []
         for ep in range(num_eps):
             new_seed = (seed + ep + 1) * 997 % 999999999 
             data = run_episode_single_agent_vdn(agent, eps, env, new_seed)
             rewards.append(data["rewards"])
-        
+            lengths.append(len(data['transitions']))
+        print(rewards)
+        agent.policy.train()
+
         return {
             # "rewards": rewards,
             "avg_reward": sum([max(r.values()) for r in rewards]) / num_eps,
             "max_reward": max([max(r.values()) for r in rewards]),
+            "min_reward": min([min(r.values()) for r in rewards]),
+            "avg_length": sum(lengths) / num_eps,
         }

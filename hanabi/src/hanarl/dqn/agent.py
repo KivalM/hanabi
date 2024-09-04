@@ -117,14 +117,16 @@ class DQNAgent(nn.Module):
     def td_error(
             self,
             batch: Dict[str, torch.Tensor],
+            log=True,
     ):
         '''
         This function computes the TD error.
         '''
         policy = self.policy(batch['observation'], batch['action_mask'], batch['action']['action'])
-
+        if log:
+            print(policy)
         with torch.no_grad():
-            target = self.target(batch['observation'], batch['action_mask'], policy['greedy_actions'])
+            target = self.target(batch['next_observation'], batch['next_action_mask'], None)
 
         terminals = batch['done'].float()
         rewards = batch['reward'].float()
@@ -132,7 +134,7 @@ class DQNAgent(nn.Module):
         #     policy = policy.view(policy.size(0), -1, policy.size(-1))
         #     target = target.view(target.size(0), -1, target.size(-1))
         policy = policy["actual_q"]
-        target = target["actual_q"]
+        target = target["q"].argmax(-1).float()
 
         # target = torch.cat(
         #     [
@@ -150,7 +152,7 @@ class DQNAgent(nn.Module):
         mask = (1 - terminals)
         target = rewards + (self.gamma ** self.multi_step)  * target
 
-        error = policy - target.detach()
+        error = target.detach() - policy
         error = error * mask    
         # assert False
         return error

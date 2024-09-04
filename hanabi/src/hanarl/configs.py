@@ -4,7 +4,7 @@ import torch
 @dataclass
 class Config:
     # General
-    seed: int = 42
+    seed: int = 999
     wandb: bool = False
     wandb_project: str = 'hanabi'
 
@@ -14,21 +14,21 @@ class Config:
     ranks: int = 5
     hand_size: int = 2
     max_information_tokens: int = 3
-    train_max_life_tokens: int = 10
+    train_max_life_tokens: int = 1
     observation_type: str = 'card_knowledge'
     encode_last_action: bool = False
     shuffle_colors: bool = False
 
     # Agent
     hidden_dim: int = 512
-    depth: int = 2
-    noisy: bool = False
+    depth: int = 4
+    noisy: bool = True
     distributional: bool = False
     n_atoms: int = 51
     v_min: int = 0
     v_max: int = 20
 
-    dueling: bool = False
+    dueling: bool = True
     vdn: bool = False
     multi_step: int = 1
     gamma: float = 0.99
@@ -41,24 +41,24 @@ class Config:
     # Training
     num_epochs: int = 100
     epoch_length: int = 10
-    update_target: int = 10
-    lr: float = 0.001
-    clip_grad: float = 50
-    start_eps: float = 0.4
-    end_eps: float = 0.02
+    update_target: int = 5
+    lr: float = 6.25e-5
+    clip_grad: float = 5
+    start_eps: float = 1.0
+    end_eps: float = 0.01
     eps_decay: float = 0.99
 
     # Replay Buffer
     prioritized: bool = True
-    alpha: float = 0.6
-    beta: float = 0.4
-    buffer_size: int = 100000
-    batch_size: int = 256
+    alpha: float = 0.9
+    beta: float = 0.6
+    buffer_size: int = 200000
+    batch_size: int = 128
+    burn_in: int = 10_000
 
     # Evaluation
-    num_eps: int = 100
+    num_eps: int = 50
     eval_eps: int = 0
-    eval_max_life_tokens: int = 10
 
     # Save
     save_interval: int = 10

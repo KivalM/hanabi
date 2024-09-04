@@ -143,13 +143,15 @@ class DQNPolicy(nn.Module):
 
         if self.distributional:
             q = self._distributional(q)
-        
+        # print("Q values")
+        # print(q)
         # compute legal q values
         legal_q = (1 + q - q.min()) * legal_actions
-
+        # print("Legal Q values")
+        # print(legal_q)
         # compute the q values of the actual actions taken
         if actions is not None:
-            actual_q = q.gather(2, actions.unsqueeze(2)).squeeze(2)
+            actual_q = legal_q.gather(2, actions.unsqueeze(2)).squeeze(2)
         else:
             actual_q = None
 
@@ -180,8 +182,7 @@ class DQNPolicy(nn.Module):
         # We use the legal actions to mask the advantage in order to avoid the computation of the advantage for illegal actions
         value = self.value(state_encoding)
         advantage = self.advantage(state_encoding)
-        legal_advantage = advantage * legal_actions
-        q = value + legal_advantage - legal_advantage.mean(2, keepdim=True)
+        q = value + (advantage - advantage.mean(-1, keepdim=True)) * legal_actions
         return q
 
     def _distributional(self, q):

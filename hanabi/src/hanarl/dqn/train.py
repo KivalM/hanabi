@@ -74,14 +74,17 @@ def train_dqn(
             storage=ListStorage(config.buffer_size)
         )
 
-    optimizer = torch.optim.Adam(agent.policy.parameters(), lr=config.lr)
+    optimizer = torch.optim.AdamW(agent.policy.parameters(), lr=config.lr)
+
+    # burn in replay buffer
+    collect_data(env, agent, buffer, 1.0, config.seed, config.burn_in, config.multi_step)
 
     if config.wandb:
         wandb.init(project='hanabi', config=config)
         wandb.watch(agent.policy)
     
     eps = config.start_eps
-
+    target_update = 0
     for epoch in trange(config.num_epochs):
         for batch_idx in trange(config.epoch_length):
             start_time = datetime.datetime.now()
@@ -91,14 +94,14 @@ def train_dqn(
 
             if num_updates % config.update_target == 0:
                 agent.update_target()
-
+                target_update += 1
             # collect data
             seed = (config.seed + epoch * config.epoch_length + batch_idx) % 7777777
-            collect_data(env, agent, buffer, eps, seed, config.batch_size * 15, config.multi_step)
+            collect_data(env, agent, buffer, eps, seed, config.batch_size * 2, config.multi_step)
 
             # sample a batch
             batch, info = buffer.sample(config.batch_size, return_info=True)
-            res = agent.compute_loss_and_priority(batch.to(device))
+            res = agent.compute_loss_and_priority(batch.to(device).detach())
             priority = res['priority']
             loss = res['loss']
 
@@ -111,10 +114,10 @@ def train_dqn(
             optimizer.step()
 
             # decrease epsilon
-            eps = max(config.end_eps, eps - config.eps_decay)
+            eps = max(config.end_eps, eps * config.eps_decay)
         
             end_time = datetime.datetime.now()
-            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time}')
+            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}')
 
         eval_seed = (9917 + epoch * 99999999) % 7777777
         eval_env = make_env(
@@ -124,7 +127,7 @@ def train_dqn(
             config.ranks,
             config.hand_size,
             config.max_information_tokens,
-            config.eval_max_life_tokens,
+            config.train_max_life_tokens,
             config.observation_type,
             config.encode_last_action,
             config.shuffle_colors

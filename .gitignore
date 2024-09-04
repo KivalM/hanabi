@@ -10,3 +10,4 @@ checkpoints
 *.cpython-39.pyc
 
 *.pt
+log.txt

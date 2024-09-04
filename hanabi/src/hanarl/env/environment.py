@@ -1,4 +1,4 @@
-from pettingzoo.classic import hanabi_v5
+from pettingzoo.classic.hanabi import hanabi
 from pettingzoo.utils.wrappers import BaseWrapper
 from pettingzoo.utils.env import ActionType, AECEnv, AgentID, ObsType
 
@@ -29,22 +29,18 @@ def make_env(
     )
 
 class HanabiEnv(BaseWrapper):
-    def __init__(self, sad, shuffle_colors, *args, **kwargs):
-        env = hanabi_v5.env(
-            players=2,
-            colors=2,
-            ranks=5,
-            hand_size=2,
-            max_information_tokens=3,
-            max_life_tokens=2
+    def __init__(self, sad, shuffle_colors, players, colors, ranks, hand_size, max_information_tokens, max_life_tokens, observation_type, seed):
+        env = hanabi.env(
+            players=players,
+            colors=colors,
+            ranks=ranks,
+            hand_size=hand_size,
+            max_information_tokens=max_information_tokens,
+            max_life_tokens=max_life_tokens,
+            observation_type=observation_type,
         )
         super().__init__(env)
-        self.players=2
-        self.colors=2
-        self.ranks=5
-        self.hand_size=2
-        self.max_information_tokens=3
-        self.max_life_tokens=2 
+
         self.sad = sad
         self.shuffle_colors = shuffle_colors
 
@@ -73,14 +69,3 @@ def encode_action_unary(action, num_actions):
 
 
 
-def collect_data(env, agent, n_times=1000):
-    data = []
-    for _ in range(n_times):
-        obs = env.reset()
-        done = False
-        while not done:
-            action = agent.act(obs)
-            next_obs, reward, done, _ = env.step(action)
-            data.append((obs, action, reward, next_obs, done))
-            obs = next_obs
-    return data
