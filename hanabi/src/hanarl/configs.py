@@ -40,13 +40,12 @@ class Config:
 
     # Training
     num_epochs: int = 100
-    epoch_length: int = 10
-    update_target: int = 1
+    epoch_length: int = 100
+    update_target: int = 10
     lr: float = 1e-4
     clip_grad: float = 15.0
     start_eps: float = 1.0
     end_eps: float = 0.01
-    eps_decay: float = 0.99
 
     # Replay Buffer
     prioritized: bool = True
@@ -55,7 +54,7 @@ class Config:
     # lower beta means more importance sampling
     beta: float = 0.6
     buffer_size: int = 200000
-    batch_size: int = 128
+    batch_size: int = 2_56
     burn_in: int = 10_000
 
     # Evaluation

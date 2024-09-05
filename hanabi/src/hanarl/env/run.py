@@ -69,11 +69,11 @@ def run_episode_single_agent_vdn(
         last_observations[player] = observation
         # perform the action
         env.step(action['action'], action['greedy_action'])
-
+        
     return {
         "transitions": ep_transitions,
         "max_rewards": max_rewards,
-        "rewards": rewards
+        "rewards": rewards,
     }
 
 

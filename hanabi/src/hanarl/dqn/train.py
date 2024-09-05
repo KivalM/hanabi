@@ -35,7 +35,8 @@ def train_dqn(
         config.train_max_life_tokens,
         config.observation_type,
         config.encode_last_action,
-        config.shuffle_colors
+        config.shuffle_colors,
+        config.vdn
     )
 
     env.reset(config.seed)
@@ -84,6 +85,8 @@ def train_dqn(
         wandb.watch(agent.policy)
     
     eps = config.start_eps
+    # linear decay
+    eps_decay = (config.start_eps - config.end_eps) / (config.num_epochs * config.epoch_length)
     target_update = 0
     for epoch in trange(config.num_epochs):
         for batch_idx in trange(config.epoch_length):
@@ -114,10 +117,10 @@ def train_dqn(
             optimizer.step()
 
             # decrease epsilon
-            eps = max(config.end_eps, eps * config.eps_decay)
+            eps = max(config.end_eps, eps - eps_decay)
         
             end_time = datetime.datetime.now()
-            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}')
+            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}', eps)
 
         eval_seed = (9917 + epoch * 99999999) % 7777777
         eval_env = make_env(
