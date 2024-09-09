@@ -42,11 +42,10 @@ def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float):
             # t['next_idx'] = len(transition) - 1
             next_idxs.append(len(transition) - 1)
         # if its not a play action
-        if t["action"]["action"].item() >= 4 and t["action"]["action"].item() <= 1:
-            t["reward"] += 0.5
+        # if t["action"]["action"].item() >= 4 or t["action"]["action"].item() <= 1:
+        #     t["reward"] += 0.25
 
     for i, t in enumerate(transition):
-        # print action r before and r after 
         for j in range(i+1, next_idxs[i]+1):
             t['reward'] += gamma ** (j - i) * transition[j]['reward']
 
@@ -180,6 +179,7 @@ class BatchRunner():
                 # "rewards": rewards
                 "avg_len": sum(steps) / len(steps),
                 "max_reward": max(max_rewards),
+                "avg_max_reward": sum(max_rewards) / len(max_rewards),
                 "max_len": max(steps),
                 "min_len": min(steps),
                 "actions": actions

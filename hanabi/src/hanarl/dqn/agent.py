@@ -138,7 +138,7 @@ class DQNAgent(nn.Module):
         '''
         error = self.td_error(batch)
 
-        loss = nn.SmoothL1Loss()(error, torch.zeros_like(error))
+        loss = nn.SmoothL1Loss(reduction="none")(error, torch.zeros_like(error))
         loss = loss.mean()
 
         priority = torch.abs(error).detach().cpu().numpy()
@@ -186,7 +186,7 @@ class DQNAgent(nn.Module):
 
         policy = policy["actual_q"]
         target = target["q"].argmax(-1).float()
-        mask = (1 - terminals)
+        # mask = (1 - terminals)
         target = rewards + bootstrap + (self.gamma ** self.multi_step)  * target
 
         error = target.detach() - policy
