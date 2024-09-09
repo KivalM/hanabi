@@ -10,6 +10,7 @@ import datetime
 from tqdm import trange
 from ..configs import Config
 from ..utils import set_all_seeds
+from ..env.batch_runner import BatchRunner
 
 def identity(x):
     return x
@@ -25,20 +26,24 @@ def train_dqn(
         input('Press Enter to continue...')
 
     # Initialize the environment
-    env = make_env(
-        config.seed,
-        config.players,
-        config.colors,
-        config.ranks,
-        config.hand_size,
-        config.max_information_tokens,
-        config.train_max_life_tokens,
-        config.observation_type,
-        config.encode_last_action,
-        config.shuffle_colors,
-        config.vdn
-    )
+    def env_maker():
+        return make_env(
+            config.seed,
+            config.players,
+            config.colors,
+            config.ranks,
+            config.hand_size,
+            config.max_information_tokens,
+            config.train_max_life_tokens,
+            config.observation_type,
+            config.encode_last_action,
+            config.shuffle_colors,
+            config.vdn
+        )   
 
+    runner = BatchRunner(env_maker, config.max_seq_len, 1, 1)
+
+    env = env_maker()
     env.reset(config.seed)
     print(env.in_dim)
     print(env.out_dim)
@@ -68,7 +73,9 @@ def train_dqn(
             storage=LazyTensorStorage(config.buffer_size),
             alpha=config.alpha,
             beta=config.beta,
-            collate_fn=identity
+            collate_fn=identity,
+            batch_size=config.batch_size,
+            prefetch=1
         )
     else:
         buffer = ReplayBuffer(
@@ -78,8 +85,8 @@ def train_dqn(
     optimizer = torch.optim.AdamW(agent.policy.parameters(), lr=config.lr)
 
     # burn in replay buffer
-    collect_data(env, agent, buffer, 1.0, config.seed, config.burn_in, config.multi_step)
-
+    # collect_data(env, agent, buffer, 1.0, config.seed, config.burn_in, config.multi_step)
+    runner.run(agent, buffer, 1, config.seed, config.burn_in)
     if config.wandb:
         wandb.init(project='hanabi', config=config)
         wandb.watch(agent.policy)
@@ -99,9 +106,9 @@ def train_dqn(
                 agent.update_target()
                 target_update += 1
             # collect data
-            seed = (config.seed + epoch * config.epoch_length + batch_idx) % 7777777
-            collect_data(env, agent, buffer, eps, seed, config.batch_size * 2, config.multi_step)
-
+            seed = (config.seed + epoch * config.epoch_length + batch_idx) * 999999 % 99999997
+            # collect_data(env, agent, buffer, eps, seed, config.batch_size * 2, config.multi_step)
+            runner.run(agent, buffer, eps, seed, config.batch_size * 10)
             # sample a batch
             batch, info = buffer.sample(config.batch_size, return_info=True)
             res = agent.compute_loss_and_priority(batch.to(device).detach())
@@ -120,22 +127,10 @@ def train_dqn(
             eps = max(config.end_eps, eps - eps_decay)
         
             end_time = datetime.datetime.now()
-            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}', eps)
+            print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}', eps, len(buffer))
 
         eval_seed = (9917 + epoch * 99999999) % 7777777
-        eval_env = make_env(
-            eval_seed,
-            config.players,
-            config.colors,
-            config.ranks,
-            config.hand_size,
-            config.max_information_tokens,
-            config.train_max_life_tokens,
-            config.observation_type,
-            config.encode_last_action,
-            config.shuffle_colors
-        )
-        eval_results = evaluate(eval_env, agent, config.eval_eps,  eval_seed, config.num_eps)
+        eval_results = runner.evaluate(agent, config.num_eps, eval_seed, config.eval_eps)
 
         # if epoch % 10 == 0:
         #     print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Eval Results: {eval_results}, Time: {end_time - start_time}')

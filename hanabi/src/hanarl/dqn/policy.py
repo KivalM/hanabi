@@ -81,7 +81,7 @@ class DQNPolicy(nn.Module):
         state_encoding = self.net(observation)
 
         if self.dueling:
-            q = self._duel(state_encoding, legal_actions)
+            q = self._duel(state_encoding)
         else:
             q = self.out_layer(state_encoding)
 
@@ -136,7 +136,7 @@ class DQNPolicy(nn.Module):
         state_encoding = self.net(observation)
 
         if self.dueling:
-            q = self._duel(state_encoding, legal_actions)
+            q = self._duel(state_encoding)
         else:
             q = self.out_layer(state_encoding)
 
@@ -145,7 +145,7 @@ class DQNPolicy(nn.Module):
             q = self._distributional(q)
 
 
-        assert q.dim() == 3, f"Expected q to have dimension 3, got {q.dim()}"
+        assert q.dim() == 3, f"Expected q to have dimension 3, got {q.dim()}{q.shape}"
         
         # print("Q values")
         # print(q)
@@ -177,7 +177,7 @@ class DQNPolicy(nn.Module):
         }
 
 
-    def _duel(self, state_encoding, legal_actions):
+    def _duel(self, state_encoding):
         # calculate the value and advantage
         # Value: V(s) = E[R|s]
         # Advantage: A(s, a) = Q(s, a) - V(s)
@@ -186,7 +186,15 @@ class DQNPolicy(nn.Module):
         # We use the legal actions to mask the advantage in order to avoid the computation of the advantage for illegal actions
         value = self.value(state_encoding)
         advantage = self.advantage(state_encoding)
-        q = value + (advantage - advantage.mean(-1, keepdim=True)) * legal_actions
+
+        # print(value.shape, advantage.shape)
+        if self.distributional and value.dim() == 3:
+            # expand to match the shape of the advantage
+            value = value.unsqueeze(-1).expand_as(advantage)
+            # print(value.shape)
+            
+        
+        q = value + (advantage - advantage.mean(-1, keepdim=True)) 
         return q
 
     def _distributional(self, q):

@@ -20,17 +20,18 @@ class Config:
     shuffle_colors: bool = False
 
     # Agent
-    hidden_dim: int = 256
-    depth: int = 5
-    noisy: bool = False
-    distributional: bool = False
+    hidden_dim: int = 512
+    depth: int = 3
+    noisy: bool = True
+    distributional: bool = True
     n_atoms: int = 51
-    v_min: int = 0
-    v_max: int = 20
+    v_min: int = -10
+    v_max: int = 10
 
     dueling: bool = True
     vdn: bool = False
-    multi_step: int = 1
+    multi_step: int = 3
+    max_seq_len = 1
     gamma: float = 0.99
     tau: float = 1 # hard update
     double: bool = True
@@ -39,26 +40,26 @@ class Config:
 
 
     # Training
-    num_epochs: int = 100
-    epoch_length: int = 100
-    update_target: int = 10
-    lr: float = 1e-4
+    num_epochs: int = 10
+    epoch_length: int = 50
+    update_target: int = 5
+    lr: float = 6.25e-5
     clip_grad: float = 15.0
-    start_eps: float = 1.0
+    start_eps: float = 0.4
     end_eps: float = 0.01
 
     # Replay Buffer
     prioritized: bool = True
     # lower alpha means more prioritization i.e more weight to TD error
-    alpha: float = 0.9
+    alpha: float = 0.7
     # lower beta means more importance sampling
-    beta: float = 0.6
-    buffer_size: int = 200000
-    batch_size: int = 2_56
+    beta: float = 0.4
+    buffer_size: int = 500_000
+    batch_size: int = 128
     burn_in: int = 10_000
 
     # Evaluation
-    num_eps: int = 100
+    num_eps: int = 50
     eval_eps: int = 0
 
     # Save

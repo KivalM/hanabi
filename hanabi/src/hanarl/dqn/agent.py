@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from typing import Dict, Union
 from .policy import DQNPolicy
+from tensordict import TensorDict
 
 class DQNAgent(nn.Module):
     '''
@@ -86,17 +87,49 @@ class DQNAgent(nn.Module):
         :param epsilon: The epsilon value for epsilon-greedy.
         :return: The action to take.
         '''
-        observation = torch.tensor(state['observation'], dtype=torch.float32).to(self.device)
-        actions = torch.tensor(state['action_mask']).to(self.device)
+        observation = state['observation'].float().to(self.device)
+        actions = state['action_mask'].to(self.device)
+        observation = observation.squeeze(0)
+        actions = actions.squeeze(0)
         a = self.policy.act(observation, actions, epsilon)
-        actions = a['actions']
-        greedy = a['greedy_actions']
+        actions = a['actions'].detach().cpu().item()
+        greedy = a['greedy_actions'].detach().cpu().item()
 
-        return {
-            'action': actions.detach().cpu().numpy(),
-            'greedy_action': greedy.detach().cpu().numpy()
-        }
+        return TensorDict({
+            'action': [actions],
+            'greedy_action': [greedy]
+        }, batch_size=1)
     
+    def compute_priority(self, transition: TensorDict):
+        '''
+        This function computes the priority. for a single transition.
+        This gets called during the sampling process.
+        '''
+
+        if self.vdn:
+            print(transition['observation'].size())
+            num_agents, obs_size = transition['observation'].size()
+        else:
+            num_agents, obs_size = transition['observation'].size()
+        
+        observation = transition['observation'].float().to(self.device)
+        legal_actions = transition['action_mask'].to(self.device)
+        action = transition['action']['action'].to(self.device)
+
+        next_observation = transition['next', 'observation'].float().to(self.device)
+        next_legal_actions = transition['next', 'action_mask'].to(self.device)
+
+        reward = transition['reward'].float().to(self.device)   
+        bootstrap = transition['bootstrap'].float().to(self.device)
+
+        policy = self.policy(observation, legal_actions, action)
+        next_policy = self.policy(next_observation, next_legal_actions, None)
+        target = self.target(next_observation, next_legal_actions, next_policy['greedy_actions'])
+
+        target = reward + bootstrap * (self.gamma ** self.multi_step) * target['actual_q']
+        priority = torch.abs(target - policy['actual_q']).detach().cpu()
+        return priority
+
 
     def compute_loss_and_priority(self, batch: Dict[str, torch.Tensor]):
         '''
@@ -116,44 +149,47 @@ class DQNAgent(nn.Module):
     
     def td_error(
             self,
-            batch: Dict[str, torch.Tensor],
+            batch: TensorDict,
             log=True,
     ):
         '''
         This function computes the TD error.
+
+        :param batch: The batch of transitions with dims 
+            [batch_size, num_agents, obs_size]
         '''
-        policy = self.policy(batch['observation'], batch['action_mask'], batch['action']['action'])
+
+        if self.vdn:
+            # expand batch to [batch_size, obs_size]
+            batch = batch.view(-1, batch.size(-1))
+        else:
+            # shrink batch to [batch_size, obs_size]
+            observation = batch['observation'].float().to(self.device).squeeze(1)
+            assert observation.size(0) == batch.size(0) and observation.size(1) == 171
+            action_mask = batch['action_mask'].to(self.device).squeeze(1)
+            action = batch['action']['action'].to(self.device).squeeze(1)
+
+            next_observation = batch['next', 'observation'].float().to(self.device).squeeze(1)
+            next_action_mask = batch['next', 'action_mask'].to(self.device).squeeze(1)
+
+
+        policy = self.policy(observation, action_mask, action)
         # if log:
         #     print(policy)
         with torch.no_grad():
-            target = self.target(batch['next_observation'], batch['next_action_mask'], None)
+            target = self.target(next_observation, next_action_mask, None)
 
-        terminals = batch['done'].float()
-        rewards = batch['reward'].float()
-        # if self.vdn:
-        #     policy = policy.view(policy.size(0), -1, policy.size(-1))
-        #     target = target.view(target.size(0), -1, target.size(-1))
+        terminals = batch['done'].float().squeeze(1).squeeze(1)
+        rewards = batch['reward'].float().squeeze(1).squeeze(1)
+        bootstrap = batch['bootstrap'].float()
+
         policy = policy["actual_q"]
         target = target["q"].argmax(-1).float()
-
-        # target = torch.cat(
-        #     [
-        #         target[self.multi_step - 1:],
-        #         torch.zeros_like(target[:self.multi_step - 1])
-        #     ],
-        #     dim=0
-        # )
-
-        # mask = torch.arange(0, policy.size(0), device=policy.device) + 1
-        # mask = mask < self.multi_step
-        # mask = mask.float()
-
-        # AND the mask with the terminal mask
         mask = (1 - terminals)
-        target = rewards + (self.gamma ** self.multi_step)  * target
+        target = rewards + bootstrap + (self.gamma ** self.multi_step)  * target
 
         error = target.detach() - policy
-        error = error * mask    
+        error = error 
         # assert False
         return error
 

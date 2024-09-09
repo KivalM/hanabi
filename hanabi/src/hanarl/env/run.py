@@ -1,10 +1,42 @@
 from ..dqn.agent import DQNAgent
 from tensordict import TensorDict
 from pettingzoo.utils.wrappers import OrderEnforcingWrapper
+from torchrl.envs import PettingZooEnv
 import torch
 from torchrl.data.replay_buffers import PrioritizedReplayBuffer
 
+
 def run_episode_single_agent_vdn(
+        agent: DQNAgent,
+        eps: float,
+        env: PettingZooEnv,
+        seed: int
+    ):
+    """Runs a single episode of the game with the given agent."""
+    state = env.reset(seed=seed)
+
+    # iterate through the environment until the episode is over
+    for player in env.agent_iter():
+        print(state)
+        if state['done'].item():
+            print('done')
+            break
+        else:
+            action = agent.act(state[player], eps)
+        new_state = env.step(action['action'], action['greedy_action'])
+        print(new_state["next"][player]["reward"])
+        assert state[player] != new_state["next"][player]
+        state= new_state['next']
+
+    return {
+        # "transitions": ep_transitions,
+        # "max_rewards": max_rewards,
+        # "rewards": rewards,
+    }
+
+
+
+def run_episode_single_agent_vdn_(
         agent: DQNAgent,
         eps: float,
         env: OrderEnforcingWrapper,
