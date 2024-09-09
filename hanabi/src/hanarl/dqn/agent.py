@@ -69,6 +69,7 @@ class DQNAgent(nn.Module):
         self.multi_step = multi_step
         self.gamma = gamma
         self.tau = tau
+        self.double = double
         self.device = device
         self.name = 'DQN' + ('-VDN' if vdn else '') + ('-IQL' if not vdn else '') + ('-QMIX' if not vdn else '') + ('-Noisy' if noisy else '') + ('-Distributional' if distributional else '') + ('-Dueling' if dueling else '') + ('-Double' if double else '') + ('-MultiStep' if multi_step > 1 else '')
 
@@ -165,7 +166,7 @@ class DQNAgent(nn.Module):
         else:
             # shrink batch to [batch_size, obs_size]
             observation = batch['observation'].float().to(self.device).squeeze(1)
-            assert observation.size(0) == batch.size(0) and observation.size(1) == 171
+            assert observation.size(0) == batch.size(0) 
             action_mask = batch['action_mask'].to(self.device).squeeze(1)
             action = batch['action']['action'].to(self.device).squeeze(1)
 
@@ -192,5 +193,43 @@ class DQNAgent(nn.Module):
         error = error 
         # assert False
         return error
+    
+    def save(self, path):
+        '''
+        This function saves the model.
+        '''
+        torch.save(self, path)
+    
+    def load(path):
+        '''
+        This function loads the model.
+        '''
+        return torch.load(path)
+    
+    def copy(self):
+        '''
+        This function copies the model.
+        '''
+        agent =  DQNAgent(
+            in_dim=self.policy.in_dim,
+            out_dim=self.policy.out_dim,
+            hidden_dim=self.policy.hidden_dim,
+            depth=self.policy.depth,
+            noisy=self.policy.noisy,
+            distributional=self.policy.distributional,
+            n_atoms=self.policy.n_atoms,
+            v_min=self.policy.v_min,
+            v_max=self.policy.v_max,
+            dueling=self.policy.dueling,
+            vdn=self.vdn,
+            multi_step=self.multi_step,
+            gamma=self.gamma,
+            tau=self.tau,
+            double=self.double,
+            device=self.device
+        )
+        agent.policy.load_state_dict(self.policy.state_dict())
+        agent.target.load_state_dict(self.target.state_dict())
+        return agent
 
 

@@ -115,6 +115,8 @@ def train_dqn(
             priority = res['priority']
             loss = res['loss']
 
+            # aggregate priorities
+            # priority = priority.mean(1)
             buffer.update_priority(info['index'], priority)
 
             optimizer.zero_grad()

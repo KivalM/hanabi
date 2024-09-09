@@ -14,19 +14,19 @@ class Config:
     ranks: int = 5
     hand_size: int = 2
     max_information_tokens: int = 3
-    train_max_life_tokens: int = 1
+    train_max_life_tokens: int = 2
     observation_type: str = 'card_knowledge'
     encode_last_action: bool = False
     shuffle_colors: bool = False
 
     # Agent
     hidden_dim: int = 512
-    depth: int = 3
+    depth: int = 2
     noisy: bool = True
     distributional: bool = True
     n_atoms: int = 51
-    v_min: int = -10
-    v_max: int = 10
+    v_min: int = -25
+    v_max: int = 25
 
     dueling: bool = True
     vdn: bool = False
@@ -40,10 +40,10 @@ class Config:
 
 
     # Training
-    num_epochs: int = 10
-    epoch_length: int = 50
+    num_epochs: int = 50
+    epoch_length: int = 10
     update_target: int = 5
-    lr: float = 6.25e-5
+    lr: float = 5e-4
     clip_grad: float = 15.0
     start_eps: float = 0.4
     end_eps: float = 0.01
@@ -51,15 +51,15 @@ class Config:
     # Replay Buffer
     prioritized: bool = True
     # lower alpha means more prioritization i.e more weight to TD error
-    alpha: float = 0.7
+    alpha: float = 0.6
     # lower beta means more importance sampling
     beta: float = 0.4
-    buffer_size: int = 500_000
-    batch_size: int = 128
-    burn_in: int = 10_000
+    buffer_size: int = 200_000
+    batch_size: int = 256
+    burn_in: int = 30_000
 
     # Evaluation
-    num_eps: int = 50
+    num_eps: int = 100
     eval_eps: int = 0
 
     # Save

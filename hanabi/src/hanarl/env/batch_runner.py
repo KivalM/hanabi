@@ -5,6 +5,7 @@ import  torch.multiprocessing as mp
 from tensordict import TensorDict
 from typing import List
 import torch
+import torch.multiprocessing as mp
 from torchrl.data.replay_buffers import TensorDictPrioritizedReplayBuffer
 
 def zeros_like_td(transition: TensorDict):
@@ -29,6 +30,9 @@ def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float):
     
     next_idxs = []
     for i, t in enumerate(transition):
+        # if t["reward"].item() < 0:
+        #     t["reward"] = 0
+        
         if i + multi_step < len(transition):
             t['bootstrap'] = 1
             # t['next_idx'] = i + multi_step
@@ -39,11 +43,11 @@ def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float):
             next_idxs.append(len(transition) - 1)
         # if its not a play action
         if t["action"]["action"].item() >= 4 and t["action"]["action"].item() <= 1:
-            t["bootstrap"] += 0.2
+            t["reward"] += 0.5
 
     for i, t in enumerate(transition):
         # print action r before and r after 
-        for j in range(i, next_idxs[i]):
+        for j in range(i+1, next_idxs[i]+1):
             t['reward'] += gamma ** (j - i) * transition[j]['reward']
 
         t['next'] = TensorDict({
@@ -150,7 +154,7 @@ class BatchRunner():
             for i in range(num_episodes):
                 step = 0
                 max_reward = 0
-                new_seed = (i * (seed + 1)) * 999999 % 99999999997
+                new_seed = (i * (seed + 1)) * 999999 % 999999997
                 state = env.reset(seed=new_seed)
                 total_reward = 0
                 for player in env.agent_iter():
@@ -180,3 +184,22 @@ class BatchRunner():
                 "min_len": min(steps),
                 "actions": actions
             }
+        
+    def run_parallel(
+            self,
+            agent:DQNAgent, 
+            buffer:TensorDictPrioritizedReplayBuffer, 
+            epsilon:float,
+            seed: int,
+            min_steps:int,
+        ):
+        threads = []
+        for i in range(self.num_threads):
+            thread = mp.Process(target=self.run, args=(agent, buffer, epsilon, seed + i, min_steps // self.num_threads))
+            thread.start()
+            threads.append(thread)
+
+        for thread in threads:
+            thread.join()
+
+     
