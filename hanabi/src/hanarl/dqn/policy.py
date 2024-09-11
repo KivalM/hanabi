@@ -121,16 +121,17 @@ class DQNPolicy(nn.Module):
             actions:Tensor,
     ) -> Dict[str, Tensor]:
         # check that the dimensions are either 2 or 3 [seq_len, batch_size, obs_dim] or [batch_size, obs_dim]
-        assert observation.dim() in [2, 3], f"Expected observation to have dimension 2 or 3, got {observation.dim()}"
+        assert observation.dim() in [2, 3], f"Expected observation to have dimension 2 or 3, got" + str(observation.dim())
 
-        two_dim = observation.dim() == 2
+        one_step = observation.dim() == 2
         # TODO: temporary fix, need to handle the case where the observation is 3D
-        assert two_dim, "Only 1 step is supported for now"
+        assert one_step, "Only 1 step is supported for now"
 
-        if two_dim:
+        if one_step:
             observation = observation.unsqueeze(0).float()
             legal_actions = legal_actions.unsqueeze(0)
             actions = actions.unsqueeze(0) if actions is not None else None
+            # print(observation.shape, legal_actions.shape, actions.shape if actions is not None else None)
 
         # all the dimensions should be [seq_len(/1), batch_size, dim]
         state_encoding = self.net(observation)
@@ -148,11 +149,11 @@ class DQNPolicy(nn.Module):
         assert q.dim() == 3, f"Expected q to have dimension 3, got {q.dim()}{q.shape}"
         
         # print("Q values")
-        # print(q)
+        # print(q.shape)
         # compute legal q values
         legal_q = (1 + q - q.min()) * legal_actions
         # print("Legal Q values")
-        # print(legal_q)
+        # print(legal_q.shape)
         # compute the q values of the actual actions taken
         if actions is not None:
             actual_q = legal_q.gather(2, actions.unsqueeze(2)).squeeze(2)
@@ -161,19 +162,22 @@ class DQNPolicy(nn.Module):
 
         # compute the new greedy actions
         greedy_actions = legal_q.argmax(2).detach()
+        greedy_q = legal_q.gather(2, greedy_actions.unsqueeze(2)).squeeze(2)
 
-        if two_dim:
+        if one_step:
             greedy_actions = greedy_actions.squeeze(0)
             legal_q = legal_q.squeeze(0)
             if actual_q is not None:
                 actual_q = actual_q.squeeze(0)
             state_encoding = state_encoding.squeeze(0)
+            greedy_q = greedy_q.squeeze(0)
 
         return {
             "q": legal_q,
             "greedy_actions": greedy_actions,
             "actual_q": actual_q,
             "state_encoding": state_encoding,
+            "greedy_q": greedy_q,
         }
 
 

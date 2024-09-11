@@ -71,7 +71,7 @@ class DQNAgent(nn.Module):
         self.tau = tau
         self.double = double
         self.device = device
-        self.name = 'DQN' + ('-VDN' if vdn else '') + ('-IQL' if not vdn else '') + ('-QMIX' if not vdn else '') + ('-Noisy' if noisy else '') + ('-Distributional' if distributional else '') + ('-Dueling' if dueling else '') + ('-Double' if double else '') + ('-MultiStep' if multi_step > 1 else '')
+        self.name = 'DQN' + ('-VDN' if vdn else '') + ('-IQL' if not vdn else '')  + ('-Noisy' if noisy else '') + ('-Distributional' if distributional else '') + ('-Dueling' if dueling else '') + ('-Double' if double else '') + ('-MultiStep' if multi_step > 1 else '')
 
     def update_target(self):
         '''
@@ -126,9 +126,10 @@ class DQNAgent(nn.Module):
         policy = self.policy(observation, legal_actions, action)
         next_policy = self.policy(next_observation, next_legal_actions, None)
         target = self.target(next_observation, next_legal_actions, next_policy['greedy_actions'])
-
+        assert reward.size() == bootstrap.size(), "Reward: {} Bootstrap: {}".format(reward.size(), bootstrap.size())
         target = reward + bootstrap * (self.gamma ** self.multi_step) * target['actual_q']
         priority = torch.abs(target - policy['actual_q']).detach().cpu()
+        assert priority.size() == (1, 1), "Priority: {}".format(priority.size())
         return priority
 
 
@@ -159,38 +160,57 @@ class DQNAgent(nn.Module):
         :param batch: The batch of transitions with dims 
             [batch_size, num_agents, obs_size]
         '''
-
+        assert batch.dim() == 1, "Batch: {}".format(batch.size())
         if self.vdn:
             # expand batch to [batch_size, obs_size]
             batch = batch.view(-1, batch.size(-1))
         else:
-            # shrink batch to [batch_size, obs_size]
+            # shrink batch to [batch_size, obs_size] from [batch_size, num_agents, obs_size]
             observation = batch['observation'].float().to(self.device).squeeze(1)
-            assert observation.size(0) == batch.size(0) 
+            # print(batch.size())
+            # print(observation.size())
+        
             action_mask = batch['action_mask'].to(self.device).squeeze(1)
+            # print(action_mask.size())
             action = batch['action']['action'].to(self.device).squeeze(1)
-
+            # print(action.size())
             next_observation = batch['next', 'observation'].float().to(self.device).squeeze(1)
             next_action_mask = batch['next', 'action_mask'].to(self.device).squeeze(1)
-
+            # print(next_observation.size())
+            # print(next_action_mask.size())
+            assert next_action_mask.size() == action_mask.size()
+            assert action.size() == (batch.size()), "Action: {} Batch: {}".format(action.size(), batch.size())
+            assert next_observation.size() == observation.size() == (batch.size(0), self.policy.in_dim), "Observation: {} Batch: {}".format(observation.size(), (batch.size(), self.policy.in_dim))
+            terminals = batch['done'].float().squeeze(1).squeeze(1)
+            rewards = batch['reward'].float().squeeze(1).squeeze(1)
+            bootstrap = batch['bootstrap'].float().squeeze(1).squeeze(1)
 
         policy = self.policy(observation, action_mask, action)
-        # if log:
-        #     print(policy)
+        # print(policy)
         with torch.no_grad():
             target = self.target(next_observation, next_action_mask, None)
+            # print(target)
 
-        terminals = batch['done'].float().squeeze(1).squeeze(1)
-        rewards = batch['reward'].float().squeeze(1).squeeze(1)
-        bootstrap = batch['bootstrap'].float()
+ 
 
         policy = policy["actual_q"]
-        target = target["q"].argmax(-1).float()
-        # mask = (1 - terminals)
-        target = rewards + bootstrap + (self.gamma ** self.multi_step)  * target
-
+        # print("Policy: {}".format(policy.size()))
+        # print(policy)
+        target = target["greedy_q"]
+        # print("Target: {}".format(target.size()))
+        # print(target)
+        # print("Rewards: {}".format(rewards.size()))
+        # print(rewards)
+        # print("Bootstrap: {}".format(bootstrap.size()))
+        # print(bootstrap)
+        non_final_mask = 1 - terminals
+        target = rewards + bootstrap * (self.gamma ** self.multi_step) * target * non_final_mask
+        # print("Target: {}".format(target.size()))
+        # print(target)
         error = target.detach() - policy
         error = error 
+        # print("Error: {}".format(error.size()))
+        # print(error)
         # assert False
         return error
     

@@ -8,8 +8,12 @@ import torch
 import datetime
 from tqdm import trange
 from ..configs import Config
+from dataclasses import asdict
 from ..utils import set_all_seeds
 from ..env.batch_runner import BatchRunner
+# time
+import datetime
+import os
 
 def identity(x):
     return x
@@ -21,7 +25,7 @@ def train_dqn(
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f'Using device: {device}')
     if device != 'cuda':
-        print('WARNING: Using CPU, this will be slow!')
+        print(f'WARNING: Using {device}, this will be slow!')
         input('Press Enter to continue...')
 
     # Initialize the environment
@@ -40,7 +44,7 @@ def train_dqn(
             config.vdn
         )   
 
-    runner = BatchRunner(env_maker, config.max_seq_len, config.multi_step, config.players)
+    runner = BatchRunner(env_maker, config.max_seq_len, config.multi_step, config.players, config.easy_mode, config.debug, config.hint_reward, config.discard_reward)
 
     env = env_maker()
     env.reset(config.seed)
@@ -74,7 +78,7 @@ def train_dqn(
             beta=config.beta,
             collate_fn=identity,
             batch_size=config.batch_size,
-            prefetch=1
+            prefetch=3
         )
     else:
         buffer = ReplayBuffer(
@@ -83,13 +87,41 @@ def train_dqn(
 
     optimizer = torch.optim.AdamW(agent.policy.parameters(), lr=config.lr, eps=config.optimizer_eps)
 
-    # burn in replay buffer
-    # collect_data(env, agent, buffer, 1.0, config.seed, config.burn_in, config.multi_step)
-    runner.run(agent, buffer, config.burn_in_eps, config.seed, config.burn_in)
-    if config.wandb:
-        wandb.init(project='hanabi', config=config)
-        wandb.watch(agent.policy)
+
+
+    run_name = f'{agent.name}_{config.seed}'
+    run_name = datetime.datetime.now().strftime("%Y%m%d-%H%M%S") + '_' + run_name
+    # make a folder for experiments
+    if not os.path.exists(config.save_dir):
+        os.makedirs(config.save_dir)
     
+    # make a folder for this run
+    assert not os.path.exists(f'{config.save_dir}/{run_name}')
+    save_dir = f'{config.save_dir}/{run_name}'
+    os.makedirs(save_dir)
+    # save the config
+    with open(f'{save_dir}/config.txt', 'w') as f:
+        f.write(str(asdict(config)))
+
+    if config.debug:
+        debug_dir = f'{save_dir}/debug'
+        os.makedirs(debug_dir)
+
+    if config.wandb:
+        wandb.init(project=config.wandb_project, name=run_name, config=asdict(config))
+        wandb.watch(agent.policy)
+        # open the wandb page
+        wandb_url = f'https://wandb.ai/{config.wandb_project}/{run_name}'
+        print(f'Wandb: {wandb_url}')
+    
+    # burn in replay buffer
+    print('Burn in buffer:', config.burn_in, "eps:", config.burn_in_eps)
+    # collect_data(env, agent, buffer, 1.0, config.seed, config.burn_in, config.multi_step)
+    stats = runner.run(agent, buffer, config.burn_in_eps, config.seed, config.burn_in, config.debug)
+    if config.debug:
+        stats.log(f'{debug_dir}/burn_in_stats.csv')
+
+    print(f'Buffer size: {len(buffer)}')
     eps = config.start_eps
     # linear decay
     eps_decay = (config.start_eps - config.end_eps) / (config.num_epochs * config.epoch_length)
@@ -105,9 +137,12 @@ def train_dqn(
                 agent.update_target()
                 target_update += 1
             # collect data
-            seed = (config.seed + epoch * config.epoch_length + batch_idx) * 999999 % 99999997
+            seed = (config.seed + epoch * config.epoch_length + batch_idx) * 99999999 % 9999999997
             # collect_data(env, agent, buffer, eps, seed, config.batch_size * 2, config.multi_step)
-            runner.run(agent, buffer, eps, seed, config.policy_update)
+            stats = runner.run(agent, buffer, eps, seed, config.policy_update, config.debug)
+            if config.debug:
+                stats.log(f'{debug_dir}/epoch_{epoch}_batch_{batch_idx}_stats.csv')
+            
             # sample a batch
             batch, info = buffer.sample(config.batch_size, return_info=True)
             res = agent.compute_loss_and_priority(batch.to(device).detach())
@@ -132,18 +167,32 @@ def train_dqn(
         eval_seed = (config.seed + 9917 + epoch * 99999999) % 7777777
         eval_results = runner.evaluate(agent, config.num_eps, eval_seed, config.eval_eps)
 
-        # if epoch % 10 == 0:
-        #     print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Eval Results: {eval_results}, Time: {end_time - start_time}')
-        #     torch.save(agent, f'./models/' + agent.name + f'_epoch_{epoch}.pt')
-        #     wandb.save(f'./models/' + agent.name + f'_epoch_{epoch}.pt')
-
         epoch_results = {
             'epoch': epoch,
             'loss': loss.detach().item(),
             'eval_results': eval_results,
-            'time': end_time - start_time
+            'time': end_time - start_time,
+            'eps': eps
         }
         print(epoch_results)
+
+        save_name = f'{save_dir}/epoch_{epoch}.pt'
+        agent.save(save_name)
+        # torch.save(buffer, f'{save_dir}/buffer_{epoch}.pt')
+        if config.wandb:
+            wandb.save(save_name)
+            # wandb.save(f'{save_dir}/buffer_{epoch}.pt')
+            wandb.log({
+                'epoch': epoch,
+                'loss': loss.detach().item(),
+                'eval_results': eval_results,
+                'time': (end_time - start_time).total_seconds(),
+                'eps': eps,
+                'target_update': target_update,
+                'buffer_size': len(buffer),
+            })
+
+
 
 
 

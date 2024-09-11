@@ -7,6 +7,41 @@ from typing import List
 import torch
 import torch.multiprocessing as mp
 from torchrl.data.replay_buffers import TensorDictPrioritizedReplayBuffer
+import numpy as np
+import pandas as pd
+
+
+class StatsCollector():
+    def __init__(self, out_dim:int):
+        self.out_dim = out_dim
+        self.stats = []
+    
+    def store_episode(self, episode: List[TensorDict], priorities: List[torch.Tensor], epsilon:float):
+        i = 0
+        for priority, transition in zip(priorities, episode):
+            greedy_action = transition["action"]["greedy_action"].detach().cpu().item()
+            action = transition["action"]["action"].detach().cpu().item()
+            actual_reward = transition["actual_reward"].detach().cpu().item()
+            multi_step_reward = transition["reward"].detach().cpu().item()
+            bootstrap = transition["bootstrap"].detach().cpu().item()
+            done = transition["done"].detach().cpu().item()
+            self.stats.append({
+                "i": i,
+                "epsilon": epsilon,
+                "bootstrap": bootstrap,
+                "greedy_action": greedy_action,
+                "action": action,
+                "actual_reward": actual_reward,
+                "multi_step_reward": multi_step_reward,
+                "priority": priority.item(),
+                "done": done
+            })
+            i += 1
+    
+    def log(self, path:str):
+        with open(path, 'w') as f:
+            df = pd.DataFrame(self.stats)
+            df.to_csv(f, index=False)
 
 def zeros_like_td(transition: TensorDict):
     return TensorDict({
@@ -25,42 +60,39 @@ def zeros_like_td(transition: TensorDict):
         })
 
 
-def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float):
+def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float, easy_mode:bool, hint_reward:float, discard_reward:float):
     ''' Takes an entire trajectory and returns the multi-step transition'''
     
     next_idxs = []
     for i, t in enumerate(transition):
-        # if t["reward"].item() < 0:
-        #     t["reward"] = 0
+        if t["reward"].item() < 0 and easy_mode:
+            t["reward"] = torch.zeros_like(t["reward"])
         
         if i + multi_step < len(transition):
-            t['bootstrap'] = 1
-            # t['next_idx'] = i + multi_step
+            t['bootstrap'] = torch.ones_like(t['reward'])
             next_idxs.append(i + multi_step)
         else:
-            t['bootstrap'] = 0
-            # t['next_idx'] = len(transition) - 1
+            t['bootstrap'] = torch.zeros_like(t['reward'])
             next_idxs.append(len(transition) - 1)
-        # if its not a play action
-        # if t["action"]["action"].item() >= 4 or t["action"]["action"].item() <= 1:
-        #     t["reward"] += 0.25
+
+        if t["action"]["action"].item() <= 1:
+            t["reward"] += discard_reward
+        
+        if t["action"]["action"].item() >= 4:
+            t["reward"] += hint_reward
 
     for i, t in enumerate(transition):
+        t['actual_reward'] = t['reward'].clone()
         for j in range(i+1, next_idxs[i]+1):
             t['reward'] += gamma ** (j - i) * transition[j]['reward']
-
-        t['next'] = TensorDict({
-            "observation": transition[next_idxs[i]]['observation'].clone(),
-            "action_mask": transition[next_idxs[i]]['action_mask'].clone()
-        })
+        if i != next_idxs[i]:
+            t['next'] = TensorDict({
+                "observation": transition[next_idxs[i]]['observation'].clone(),
+                "action_mask": transition[next_idxs[i]]['action_mask'].clone()
+            })
     
     return transition
 
-def other_player(player):
-    if player == "player_0":
-        return "player_1"
-    else:
-        return "player_0"
 
 class BatchRunner():
     def __init__(
@@ -68,7 +100,11 @@ class BatchRunner():
             env_fn:  Callable[[], HanaEnv],
             sequence_length:int ,
             multi_step:int,
-            n_agents:int, # 1 for iql and 2 for vdn
+            n_agents:int, # 1 for iql and >1 for vdn
+            easy_mode:bool,
+            debug:bool,
+            hint_reward:float,
+            discard_reward:float,
             num_threads:int = mp.cpu_count() - 1,
         ):
         self.env_fn = env_fn
@@ -76,6 +112,10 @@ class BatchRunner():
         self.num_threads = num_threads
         self.multi_step = multi_step
         self.n_agents = n_agents
+        self.easy_mode = easy_mode
+        self.debug = debug
+        self.hint_reward = hint_reward
+        self.discard_reward = discard_reward
 
     def run_episode(
             self, 
@@ -100,10 +140,10 @@ class BatchRunner():
                     "reward": new_state["next"][player]["reward"],
                     "done": new_state["next"][player]["done"],
                     "action": action,
-                    # "next":{
-                    #     "observation": new_state["next"][player]["observation"],
-                    #     "action_mask": new_state["next"][player]["action_mask"]
-                    # }
+                    "next":{
+                        "observation": new_state["next"][player]["observation"],
+                        "action_mask": new_state["next"][player]["action_mask"]
+                    }
             }))
 
             state = new_state['next']
@@ -117,19 +157,25 @@ class BatchRunner():
             epsilon:float,
             seed: int,
             min_steps:int,
+            return_stats:bool = False
         ):
         env = self.env_fn()
+        if return_stats:
+            stats = StatsCollector(env.out_dim)
+
         with torch.no_grad():
             while min_steps > 0:
                 new_seed = (seed + min_steps + 1) * 99999999 % 999999997
                 trajectory = self.run_episode(agent, epsilon, new_seed, env)
-                trajectory = multi_step_td(trajectory, self.multi_step, agent.gamma)
+                trajectory = multi_step_td(trajectory, self.multi_step, agent.gamma, self.easy_mode, self.hint_reward, self.discard_reward)
                 
                 priorities = []
                 for transition in trajectory:
                     priority = agent.compute_priority(transition)
                     priorities.append(priority)
-                    # print(priority)
+
+                if return_stats:
+                    stats.store_episode(trajectory, priorities, epsilon)
 
                 if len(trajectory) == 0:
                     continue
@@ -142,6 +188,11 @@ class BatchRunner():
                 buffer.update_priority(idx, priorities)
 
                 min_steps -= len(trajectory)
+        
+        if return_stats:
+            return stats
+        else:
+            return None
         
     def evaluate(self, agent:DQNAgent, num_episodes:int, seed:int, epsilon:float):
         with torch.no_grad():
@@ -164,8 +215,6 @@ class BatchRunner():
                         actions[action['action']] += 1
                     new_state = env.step(action['action'], action['greedy_action'])
                     total_reward += new_state["next"][player]["reward"].detach().cpu().item()
-                    # print(new_state["next"]["player_0"]["reward"])
-                    # print(new_state["next"]["player_1"]["reward"])
                     max_reward = max(max_reward, total_reward)
                     state = new_state['next']
                     step += 1
@@ -175,7 +224,7 @@ class BatchRunner():
                 steps.append(step)
             return {
                 "mean": sum(rewards) / len(rewards),
-                "std": torch.std(torch.tensor(rewards)),
+                "std": torch.std(torch.tensor(rewards)).item(),
                 # "rewards": rewards
                 "avg_len": sum(steps) / len(steps),
                 "max_reward": max(max_rewards),

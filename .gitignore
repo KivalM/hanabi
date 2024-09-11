@@ -11,3 +11,5 @@ checkpoints
 
 *.pt
 log.txt
+
+models/
