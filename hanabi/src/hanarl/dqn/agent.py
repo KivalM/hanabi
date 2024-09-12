@@ -57,6 +57,7 @@ class DQNAgent(nn.Module):
             hidden_dim=hidden_dim,
             depth=depth,
             noisy=noisy,
+            noise_std=noise_std,
             distributional=distributional,
             n_atoms=n_atoms,
             v_min=v_min,

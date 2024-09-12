@@ -1,6 +1,5 @@
 from torchrl.data.replay_buffers import ReplayBuffer, PrioritizedReplayBuffer, TensorDictPrioritizedReplayBuffer
 from .agent import DQNAgent
-from ..env.environment import HanabiEnv
 from ..env.environment import make_env
 from torchrl.data.replay_buffers.storages import LazyTensorStorage, ListStorage
 import wandb
