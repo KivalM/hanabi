@@ -144,7 +144,7 @@ class RainbowConfig(Config):
 
     # Agent
     hidden_dim: int = 512
-    depth: int = 3
+    depth: int = 2
     noisy: bool = True
     noise_std: float = 0.15
     distributional: bool = True
@@ -180,7 +180,7 @@ class RainbowConfig(Config):
     # lower beta means more importance sampling
     beta: float = 0.4
     buffer_size: int = 50_000
-    batch_size: int = 512
+    batch_size: int = 256
     burn_in: int = 512
 
     # Evaluation

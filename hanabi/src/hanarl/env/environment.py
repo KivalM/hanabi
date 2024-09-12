@@ -89,8 +89,9 @@ class HanaEnv(PettingZooEnv):
             state['next'][group]['observation'] = state['next'][group]['observation']['observation']
         
         if self.sad:
-            self.last_greed_action = encode_action_one_hot(greedy_action, self.out_dim)
-            state['next'][self.agent_selection]['observation'] = np.concatenate([state['next'][self.agent_selection]['observation'], self.last_greed_action])
+            self.last_greed_action = torch.tensor(encode_action_one_hot(greedy_action, self.out_dim))
+            state['next'][self.agent_selection]['observation'] = np.concatenate([state['next'][self.agent_selection]['observation'], self.last_greed_action.unsqueeze(0)], axis=1)
+            state['next'][get_other_player(self.agent_selection)]['observation'] = np.concatenate([state['next'][get_other_player(self.agent_selection)]['observation'], self.last_greed_action.unsqueeze(0)], axis=1)
         return state
 
     def render(self, mode='human'):
@@ -102,7 +103,8 @@ class HanaEnv(PettingZooEnv):
         for group in self.group_map.keys():
             state[group]['observation'] = state[group]['observation']['observation']
         if self.sad:
-            state['next'][self.agent_selection]['observation'] = np.concatenate([state['next'][self.agent_selection]['observation'], torch.zeros(self.out_dim)])
+            state[self.agent_selection]['observation'] = np.concatenate([state[self.agent_selection]['observation'], torch.zeros(self.out_dim).unsqueeze(0)], axis=1)
+            state[get_other_player(self.agent_selection)]['observation'] = np.concatenate([state[get_other_player(self.agent_selection)]['observation'], torch.zeros(self.out_dim).unsqueeze(0)], axis=1)
         return state
 
 # class HanabiEnv(BaseWrapper):

@@ -11,6 +11,7 @@ def args():
     parser.add_argument('--wandb_project', type=str, default='Hanabi-RL')
     parser.add_argument('--observation_type', type=str, choices=['card_knowledge', 'seer'])
     parser.add_argument('--encode_last_action', type=int)
+    parser.add_argument('--seed', type=int)
 
     parser.add_argument('--config', type=str, help='DQN/Rainbow/RDQN', choices=['DQN', 'Rainbow', 'RDQN'], required=True)
     args = parser.parse_args()
