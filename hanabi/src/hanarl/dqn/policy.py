@@ -17,6 +17,7 @@ class DQNPolicy(nn.Module):
             depth: int,
             # noisy arguments
             noisy: bool,
+            noise_std: float,
             # distributional arguments
             distributional: bool, # whether to use distributional DQN
             n_atoms: int, # number of atoms in the distribution
@@ -50,6 +51,7 @@ class DQNPolicy(nn.Module):
             num_cells=hidden_dim,
             depth=depth,
             layer_class=layer_class,
+            layer_kwargs={"std_init": noise_std} if noisy else None,
             activate_last_layer=True,
             activation_class=nn.ReLU
         )
@@ -209,10 +211,11 @@ class DQNPolicy(nn.Module):
         if four_dim:
             q = q.squeeze(0)
 
-        # reshape the output tensor to (batch_size, 4, -1)
+        # reshape the output tensor to (batch_size, 51, 11)
         q = q.view(q.size(0), self.n_atoms, -1)
         
         # compute the probabilities
+        
         q = nn.functional.softmax(q, dim=-1)
 
         # compute the atoms

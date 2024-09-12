@@ -58,6 +58,7 @@ def train_dqn(
         config.hidden_dim,
         config.depth,
         config.noisy,
+        config.noise_std,
         config.distributional,
         config.n_atoms,
         config.v_min,

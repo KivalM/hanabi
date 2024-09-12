@@ -17,6 +17,7 @@ class DQNAgent(nn.Module):
             depth: int,
             # noisy arguments
             noisy: bool,
+            noise_std: float,
             # distributional arguments
             distributional: bool, # whether to use distributional DQN
             n_atoms: int, # number of atoms in the distribution
@@ -42,6 +43,7 @@ class DQNAgent(nn.Module):
             hidden_dim=hidden_dim,
             depth=depth,
             noisy=noisy,
+            noise_std=noise_std,
             distributional=distributional,
             n_atoms=n_atoms,
             v_min=v_min,
