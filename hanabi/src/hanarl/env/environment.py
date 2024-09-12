@@ -4,6 +4,7 @@ from pettingzoo.utils.env import ActionType, AECEnv, AgentID, ObsType
 from torchrl.envs import PettingZooEnv, MarlGroupMapType
 import numpy as np
 from tensordict import TensorDict
+import torch
 
 def make_env(
         seed,
@@ -39,6 +40,7 @@ def get_other_player(player):
         return "player_1"
     else:
         return "player_0"
+
 
 class HanaEnv(PettingZooEnv):
     def __init__(
@@ -99,6 +101,8 @@ class HanaEnv(PettingZooEnv):
         state = super().reset(seed=seed)
         for group in self.group_map.keys():
             state[group]['observation'] = state[group]['observation']['observation']
+        if self.sad:
+            state['next'][self.agent_selection]['observation'] = np.concatenate([state['next'][self.agent_selection]['observation'], torch.zeros(self.out_dim)])
         return state
 
 # class HanabiEnv(BaseWrapper):

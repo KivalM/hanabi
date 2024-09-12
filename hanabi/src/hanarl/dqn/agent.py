@@ -105,7 +105,7 @@ class DQNAgent(nn.Module):
     
     def compute_priority(self, transition: TensorDict):
         '''
-        This function computes the priority. for a single transition.
+        This function computes the priority for a single transition.
         This gets called during the sampling process.
         '''
 
