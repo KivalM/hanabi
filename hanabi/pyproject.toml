@@ -10,7 +10,7 @@ dependencies = [
     "torchrl==0.5.0",
     "wandb==0.17.0",
     "tqdm==4.66.5",
-    "pandas==2.2.2",
+    "pandas==2.1.4",
     "numpy==1.26.3",
 ]
 requires-python = ">=3.9"
