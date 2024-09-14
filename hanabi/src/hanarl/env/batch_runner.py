@@ -60,14 +60,21 @@ def zeros_like_td(transition: TensorDict):
         })
 
 
-def multi_step_td(transition: List[TensorDict], multi_step:int, gamma:float, easy_mode:bool, hint_reward:float, discard_reward:float):
+def multi_step_td(
+        transition: List[TensorDict], 
+        multi_step:int, 
+        gamma:float, 
+        step_reward_lower_bound:float, 
+        hint_reward:float, 
+        discard_reward:float
+    ):
     ''' Takes an entire trajectory and returns the multi-step transition'''
     
     next_idxs = []
     for i, t in enumerate(transition):
-        if t["reward"].item() < 0 and easy_mode:
-            t["reward"] = torch.zeros_like(t["reward"])
-        
+        if step_reward_lower_bound is not None and t["reward"].item() < step_reward_lower_bound:
+            t["reward"] = torch.zeros_like(t["reward"]) + step_reward_lower_bound
+
         if i + multi_step < len(transition):
             t['bootstrap'] = torch.ones_like(t['reward'])
             next_idxs.append(i + multi_step)
@@ -101,7 +108,7 @@ class BatchRunner():
             sequence_length:int ,
             multi_step:int,
             n_agents:int, # 1 for iql and >1 for vdn
-            easy_mode:bool,
+            step_reward_lower_bound:float,
             debug:bool,
             hint_reward:float,
             discard_reward:float,
@@ -112,7 +119,7 @@ class BatchRunner():
         self.num_threads = num_threads
         self.multi_step = multi_step
         self.n_agents = n_agents
-        self.easy_mode = easy_mode
+        self.step_reward_lower_bound = step_reward_lower_bound
         self.debug = debug
         self.hint_reward = hint_reward
         self.discard_reward = discard_reward
@@ -167,7 +174,7 @@ class BatchRunner():
             while min_steps > 0:
                 new_seed = (seed + min_steps + 1) * 99999999 % 999999997
                 trajectory = self.run_episode(agent, epsilon, new_seed, env)
-                trajectory = multi_step_td(trajectory, self.multi_step, agent.gamma, self.easy_mode, self.hint_reward, self.discard_reward)
+                trajectory = multi_step_td(trajectory, self.multi_step, agent.gamma, self.step_reward_lower_bound, self.hint_reward, self.discard_reward)
                 
                 priorities = []
                 for transition in trajectory:

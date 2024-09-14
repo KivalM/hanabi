@@ -6,7 +6,7 @@ import wandb
 import torch
 import datetime
 from tqdm import trange
-from ..configs import Config
+from ..configs import BaseConfig
 from dataclasses import asdict
 from ..utils import set_all_seeds
 from ..env.batch_runner import BatchRunner
@@ -18,7 +18,7 @@ def identity(x):
     return x
 
 def train_dqn(
-    config:Config
+    config:BaseConfig
 ):
     set_all_seeds(config.seed)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -43,7 +43,7 @@ def train_dqn(
             config.vdn
         )   
 
-    runner = BatchRunner(env_maker, config.max_seq_len, config.multi_step, config.players, config.easy_mode, config.debug, config.hint_reward, config.discard_reward)
+    runner = BatchRunner(env_maker, config.max_seq_len, config.multi_step, config.players, config.step_reward_lower_bound, config.debug, config.hint_reward, config.discard_reward)
 
     env = env_maker()
     env.reset(config.seed)
@@ -127,6 +127,7 @@ def train_dqn(
     eps_decay = (config.start_eps - config.end_eps) / (config.num_epochs * config.epoch_length)
     target_update = 0
     for epoch in trange(config.num_epochs):
+        epoch_start_time = datetime.datetime.now()
         for batch_idx in trange(config.epoch_length):
             start_time = datetime.datetime.now()
 
@@ -137,21 +138,21 @@ def train_dqn(
                 agent.update_target()
                 target_update += 1
             # collect data
-            seed = (config.seed + epoch * config.epoch_length + batch_idx) * 99999999 % 9999999997
+            seed = (config.seed + epoch * config.epoch_length + batch_idx) * 99999999 % 99999999997
             # collect_data(env, agent, buffer, eps, seed, config.batch_size * 2, config.multi_step)
             stats = runner.run(agent, buffer, eps, seed, config.policy_update, config.debug)
             if config.debug:
                 stats.log(f'{debug_dir}/epoch_{epoch}_batch_{batch_idx}_stats.csv')
             
             # sample a batch
-            batch, info = buffer.sample(config.batch_size, return_info=True)
+            batch = buffer.sample()
             res = agent.compute_loss_and_priority(batch.to(device).detach())
             priority = res['priority']
             loss = res['loss']
 
             # aggregate priorities
-            # priority = priority.mean(1)
-            buffer.update_priority(info['index'], priority)
+            batch.set('td_error', priority)
+            buffer.update_tensordict_priority(batch)
 
             optimizer.zero_grad()
             loss.backward()
@@ -166,22 +167,21 @@ def train_dqn(
 
         eval_seed = (config.seed + 9917 + epoch * 99999999) % 7777777
         eval_results = runner.evaluate(agent, config.num_eps, eval_seed, config.eval_eps)
-
+        epoch_end_time = datetime.datetime.now()
         epoch_results = {
             'epoch': epoch,
             'loss': loss.detach().item(),
             'eval_results': eval_results,
-            'time': end_time - start_time,
+            'time:': (epoch_end_time - epoch_start_time).total_seconds(),
             'eps': eps
         }
         print(epoch_results)
 
         save_name = f'{save_dir}/epoch_{epoch}.pt'
         agent.save(save_name)
-        # torch.save(buffer, f'{save_dir}/buffer_{epoch}.pt')
+
         if config.wandb:
             wandb.save(save_name)
-            # wandb.save(f'{save_dir}/buffer_{epoch}.pt')
             wandb.log({
                 'epoch': epoch,
                 'loss': loss.detach().item(),
