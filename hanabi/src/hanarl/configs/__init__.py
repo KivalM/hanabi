@@ -18,7 +18,7 @@ class BaseConfig:
     observation_type: str = 'card_knowledge'
     encode_last_action: bool = False
     shuffle_colors: bool = False
-    step_reward_lower_bound: float = -1.0
+    step_reward_lower_bound: float = -0.5
     hint_reward: float = 0.0 # a reward for giving a hint
     discard_reward: float = 0.0 # a reward for discarding a card
 
@@ -45,7 +45,7 @@ class BaseConfig:
     num_epochs: int = 100
     epoch_length: int = 100
     policy_update: int = 256 # number of game steps before policy update
-    update_target: int = 2 # number of policy updates before target update
+    update_target: int = 100 # number of policy updates before target update
     lr: float = 6.25e-5
     optimizer_eps: float = 1e-8
     clip_grad: float = 100.0

@@ -29,13 +29,13 @@ class RainbowConfig(BaseConfig):
     double: bool = True
 
     # Training
-    num_epochs: int = 100
+    num_epochs: int = 300
     epoch_length: int = 100
     policy_update: int = 256 # number of game steps before policy update
-    update_target: int = 10 # number of policy updates before target update
+    update_target: int = 100 # number of policy updates before target update
     lr: float = 5e-4
     optimizer_eps: float = 1e-8
-    clip_grad: float = 5.0
+    clip_grad: float = 50.0
     start_eps: float = 0.001
     end_eps: float = 0.0
     burn_in_eps: int = 0
@@ -43,10 +43,10 @@ class RainbowConfig(BaseConfig):
     # Replay Buffer
     prioritized: bool = True
     # higher alpha means more prioritization i.e more weight to TD error
-    alpha: float = 0.6
+    alpha: float = 0.9
     # lower beta means more importance sampling
-    beta: float = 0.4
-    buffer_size: int = 50_000
+    beta: float = 1.1
+    buffer_size: int = 100_000
     batch_size: int = 256
     burn_in: int = 512
 
