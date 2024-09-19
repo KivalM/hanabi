@@ -38,6 +38,7 @@ def args():
         raise ValueError(f"Invalid config {config}")
     
     config.wandb = True if args['wandb'] == 1 else False
+    print(config)
     return config
 
 
