@@ -42,7 +42,7 @@ class DQNConfig(BaseConfig):
    alpha: float = 0.9
     # lower beta means more importance sampling
    beta: float = 1.1
-   buffer_size: int = 100_000
+   buffer_size: int = 10_000
    batch_size: int = 256
    burn_in: int = 10_000
 

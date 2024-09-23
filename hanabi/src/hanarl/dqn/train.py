@@ -126,6 +126,7 @@ def train_dqn(
     # linear decay
     eps_decay = (config.start_eps - config.end_eps) / (config.num_epochs * config.epoch_length)
     target_update = 0
+    eval_logs = []
     for epoch in trange(config.num_epochs):
         epoch_start_time = datetime.datetime.now()
         for batch_idx in trange(config.epoch_length):
@@ -176,6 +177,7 @@ def train_dqn(
             'eps': eps
         }
         print(epoch_results)
+        eval_logs.append(epoch_results)
 
         save_name = f'{save_dir}/epoch_{epoch}.pt'
         agent.save(save_name)
@@ -191,10 +193,35 @@ def train_dqn(
                 'target_update': target_update,
                 'buffer_size': len(buffer),
             })
+    #  final evaluation
+    eval_seed = ((config.seed + 9918 + epoch) * 99999999) % 777777777
+    eval_results = runner.evaluate(agent, config.num_eps*100, eval_seed, config.eval_eps)
+    epoch_end_time = datetime.datetime.now()
+    epoch_results = {
+        'epoch': epoch,
+        'loss': loss.detach().item(),
+        'eval_results': eval_results,
+        'time:': (epoch_end_time - epoch_start_time).total_seconds(),
+        'eps': eps
+    }
+    print(epoch_results)
+    eval_logs.append(epoch_results)
 
+    if config.wandb:
+        wandb.log({
+            'epoch': epoch,
+            'loss': loss.detach().item(),
+            'eval_results': eval_results,
+            'time': (end_time - start_time).total_seconds(),
+            'eps': eps,
+            'target_update': target_update,
+            'buffer_size': len(buffer),
+        })
 
-
-
+    # save eval logs
+    with open(f'{save_dir}/eval_logs.txt', 'w') as f:
+        for log in eval_logs:
+            f.write(str(log) + '\n')
 
 # def train_dqn_(
 #     env:HanabiEnv,
