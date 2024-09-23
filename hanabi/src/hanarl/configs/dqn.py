@@ -25,11 +25,11 @@ class DQNConfig(BaseConfig):
    double: bool = True
 
    # Training
-   num_epochs: int = 300
+   num_epochs: int = 10
    epoch_length: int = 100
    policy_update: int = 256 # number of game steps before policy update
    update_target: int = 100 # number of policy updates before target update
-   lr: float = 6.25e-5
+   lr: float = 1e-4
    optimizer_eps: float = 1e-8
    clip_grad: float = 50.0
    start_eps: float = 1.0
