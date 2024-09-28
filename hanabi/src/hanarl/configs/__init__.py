@@ -14,11 +14,11 @@ class BaseConfig:
     ranks: int = 5
     hand_size: int = 2
     max_information_tokens: int = 3
-    train_max_life_tokens: int = 1
-    observation_type: str = 'card_knowledge'
+    train_max_life_tokens: int = 3
+    observation_type: str = 'seer'
     encode_last_action: bool = False
     shuffle_colors: bool = False
-    step_reward_lower_bound: float = -0.5
+    step_reward_lower_bound: float = None # a penalty for an illegal move
     hint_reward: float = 0.0 # a reward for giving a hint
     discard_reward: float = 0.0 # a reward for discarding a card
 

@@ -9,7 +9,7 @@ import torch.multiprocessing as mp
 from torchrl.data.replay_buffers import TensorDictPrioritizedReplayBuffer
 import numpy as np
 import pandas as pd
-
+from tqdm import trange
 
 class StatsCollector():
     def __init__(self, out_dim:int):
@@ -72,14 +72,15 @@ def multi_step_td(
     
     next_idxs = []
     for i, t in enumerate(transition):
-        if step_reward_lower_bound is not None and t["reward"].item() < step_reward_lower_bound:
-            t["reward"] = torch.zeros_like(t["reward"]) + step_reward_lower_bound
+        # if step_reward_lower_bound is not None and t["reward"].item() < step_reward_lower_bound:
+        #     t["reward"] = torch.zeros_like(t["reward"]) + step_reward_lower_bound
 
         if i + multi_step < len(transition):
             t['bootstrap'] = torch.ones_like(t['reward'])
             next_idxs.append(i + multi_step)
         else:
-            t['bootstrap'] = torch.zeros_like(t['reward'])
+            t['bootstrap'] = torch.ones_like(t['reward'])
+            # t['bootstrap'] = torch.zeros_like(t['reward'])
             next_idxs.append(len(transition) - 1)
 
         if t["action"]["action"].item() <= 1:
@@ -208,7 +209,7 @@ class BatchRunner():
             steps = []
             max_rewards = []
             actions = [0] * env.out_dim
-            for i in range(num_episodes):
+            for i in trange(num_episodes):
                 step = 0
                 max_reward = 0
                 new_seed = (i * (seed + 1)) * 999999 % 999999997

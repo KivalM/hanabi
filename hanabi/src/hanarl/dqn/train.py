@@ -188,14 +188,14 @@ def train_dqn(
                 'epoch': epoch,
                 'loss': loss.detach().item(),
                 'eval_results': eval_results,
-                'time': (end_time - start_time).total_seconds(),
+                'time:': (epoch_end_time - epoch_start_time).total_seconds(),
                 'eps': eps,
                 'target_update': target_update,
                 'buffer_size': len(buffer),
             })
     #  final evaluation
     eval_seed = ((config.seed + 9918 + epoch) * 99999999) % 777777777
-    eval_results = runner.evaluate(agent, config.num_eps*100, eval_seed, config.eval_eps)
+    eval_results = runner.evaluate(agent, config.num_eps*10, eval_seed, config.eval_eps)
     epoch_end_time = datetime.datetime.now()
     epoch_results = {
         'epoch': epoch,
