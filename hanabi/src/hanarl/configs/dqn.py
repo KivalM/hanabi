@@ -12,7 +12,7 @@ class DQNConfig(BaseConfig):
 
    # Agent
    hidden_dim: int = 512
-   depth: int = 4
+   depth: int = 2
    noisy: bool = False
    distributional: bool = False
    dueling: bool = True
@@ -27,7 +27,7 @@ class DQNConfig(BaseConfig):
    # Training
    num_epochs: int = 20
    epoch_length: int = 1000
-   policy_update: int = 20 # number of game steps before policy update
+   policy_update: int = 10 # number of game steps before policy update
    update_target: int = 1 # number of policy updates before target update
    lr: float = 1e-4
    optimizer_eps: float = 1e-8
@@ -42,9 +42,9 @@ class DQNConfig(BaseConfig):
    alpha: float = 0.6
     # lower beta means more importance sampling
    beta: float = 0.4
-   buffer_size: int = 50_000
+   buffer_size: int = 100_000
    batch_size: int = 128
-   burn_in: int = 10_000
+   burn_in: int = 128
 
    # Evaluation
    num_eps: int = 100

@@ -127,8 +127,10 @@ def train_dqn(
     eps_decay = (config.start_eps - config.end_eps) / (config.num_epochs * config.epoch_length)
     target_update = 0
     eval_logs = []
+    steps_train = 0
     for epoch in trange(config.num_epochs):
         epoch_start_time = datetime.datetime.now()
+        epoch_losses = []
         for batch_idx in trange(config.epoch_length):
             start_time = datetime.datetime.now()
 
@@ -154,7 +156,7 @@ def train_dqn(
             # aggregate priorities
             batch.set('td_error', priority)
             buffer.update_tensordict_priority(batch)
-
+            steps_train += config.batch_size
             optimizer.zero_grad()
             loss.backward()
             torch.nn.utils.clip_grad_norm_(agent.policy.parameters(), config.clip_grad)
@@ -164,6 +166,7 @@ def train_dqn(
             eps = max(config.end_eps, eps - eps_decay)
         
             end_time = datetime.datetime.now()
+            epoch_losses.append(loss.detach().item())
             print(f'Epoch: {epoch}, Loss: {loss.detach().item()}, Time: {end_time - start_time} Target Update: {target_update}', eps, len(buffer))
 
         eval_seed = (config.seed + 9917 + epoch * 99999999) % 7777777
@@ -171,10 +174,15 @@ def train_dqn(
         epoch_end_time = datetime.datetime.now()
         epoch_results = {
             'epoch': epoch,
-            'loss': loss.detach().item(),
+            # 'loss': loss.detach().item(),
+            'loss': sum(epoch_losses) / len(epoch_losses),
             'eval_results': eval_results,
             'time:': (epoch_end_time - epoch_start_time).total_seconds(),
-            'eps': eps
+            'eps': eps,
+            'target_update': target_update,
+            'buffer_size': len(buffer),
+            "steps_train": steps_train
+
         }
         print(epoch_results)
         eval_logs.append(epoch_results)
@@ -186,12 +194,14 @@ def train_dqn(
             wandb.save(save_name)
             wandb.log({
                 'epoch': epoch,
-                'loss': loss.detach().item(),
+                # 'loss': loss.detach().item(),
+                'loss': sum(epoch_losses) / len(epoch_losses),
                 'eval_results': eval_results,
                 'time:': (epoch_end_time - epoch_start_time).total_seconds(),
                 'eps': eps,
                 'target_update': target_update,
                 'buffer_size': len(buffer),
+                "steps_train": steps_train
             })
     #  final evaluation
     eval_seed = ((config.seed + 9918 + epoch) * 99999999) % 777777777

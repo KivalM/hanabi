@@ -15,7 +15,7 @@ class BaseConfig:
     hand_size: int = 2
     max_information_tokens: int = 3
     train_max_life_tokens: int = 3
-    observation_type: str = 'seer'
+    observation_type: str = 'card_knowledge'
     encode_last_action: bool = False
     shuffle_colors: bool = False
     step_reward_lower_bound: float = None # a penalty for an illegal move

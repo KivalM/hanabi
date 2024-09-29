@@ -69,19 +69,19 @@ def multi_step_td(
         discard_reward:float
     ):
     ''' Takes an entire trajectory and returns the multi-step transition'''
-    
+    total_reward = 0
     next_idxs = []
     for i, t in enumerate(transition):
         # if step_reward_lower_bound is not None and t["reward"].item() < step_reward_lower_bound:
         #     t["reward"] = torch.zeros_like(t["reward"]) + step_reward_lower_bound
-
+        total_reward += t["reward"].item()
         if i + multi_step < len(transition):
-            t['bootstrap'] = torch.ones_like(t['reward'])
+            # t['bootstrap'] = torch.ones_like(t['reward'])
             next_idxs.append(i + multi_step)
         else:
-            t['bootstrap'] = torch.ones_like(t['reward'])
-            # t['bootstrap'] = torch.zeros_like(t['reward'])
+            # t['bootstrap'] = torch.ones_like(t['reward'])
             next_idxs.append(len(transition) - 1)
+        # t['bootstrap'] = torch.zeros_like(t['reward']) + 
 
         if t["action"]["action"].item() <= 1:
             t["reward"] += discard_reward
@@ -89,8 +89,15 @@ def multi_step_td(
         if t["action"]["action"].item() >= 4:
             t["reward"] += hint_reward
 
+
+
     for i, t in enumerate(transition):
         t['actual_reward'] = t['reward'].clone()
+        t["bootstrap"] = torch.zeros_like(t["reward"]) + (total_reward / 10)/2 + 0.5
+        print(i, next_idxs[i])
+        print(t["reward"])
+        print(t["bootstrap"])
+        print()
         for j in range(i+1, next_idxs[i]+1):
             t['reward'] += gamma ** (j - i) * transition[j]['reward']
         if i != next_idxs[i]:
