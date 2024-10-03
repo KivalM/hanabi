@@ -71,20 +71,18 @@ def train_dqn(
         device=device
     )
 
-    if config.prioritized:
-        buffer = TensorDictPrioritizedReplayBuffer(
-            storage=LazyTensorStorage(config.buffer_size),
-            alpha=config.alpha,
-            beta=config.beta,
-            collate_fn=identity,
-            batch_size=config.batch_size,
-            prefetch=3
-        )
-    else:
-        buffer = ReplayBuffer(
-            storage=ListStorage(config.buffer_size)
-        )
+    if not config.prioritized:
+        config.alpha = 0.0
+        config.beta = 1.0
 
+    buffer = TensorDictPrioritizedReplayBuffer(
+        storage=LazyTensorStorage(config.buffer_size),
+        alpha=config.alpha,
+        beta=config.beta,
+        collate_fn=identity,
+        batch_size=config.batch_size,
+        prefetch=3
+    )
     optimizer = torch.optim.AdamW(agent.policy.parameters(), lr=config.lr, eps=config.optimizer_eps)
 
 

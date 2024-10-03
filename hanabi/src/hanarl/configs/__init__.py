@@ -14,7 +14,7 @@ class BaseConfig:
     ranks: int = 5
     hand_size: int = 2
     max_information_tokens: int = 3
-    train_max_life_tokens: int = 3
+    train_max_life_tokens: int = 2
     observation_type: str = 'card_knowledge'
     encode_last_action: bool = False
     shuffle_colors: bool = False

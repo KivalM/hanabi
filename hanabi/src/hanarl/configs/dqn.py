@@ -5,7 +5,7 @@ from dataclasses import dataclass
 @dataclass
 class DQNConfig(BaseConfig):
    # General
-   seed: int = 1
+   seed: int = 99
    wandb: bool = True
    wandb_project: str = 'hanabi'
 
@@ -15,9 +15,9 @@ class DQNConfig(BaseConfig):
    depth: int = 2
    noisy: bool = False
    distributional: bool = False
-   dueling: bool = True
+   dueling: bool = False
    vdn: bool = False
-   multi_step: int = 1
+   multi_step: int = 0
    max_seq_len = 1
    gamma: float = 0.99
    # tau: float = 1 # hard update
@@ -25,9 +25,9 @@ class DQNConfig(BaseConfig):
    double: bool = True
 
    # Training
-   num_epochs: int = 20
+   num_epochs: int = 120
    epoch_length: int = 1000
-   policy_update: int = 10 # number of game steps before policy update
+   policy_update: int = 50 # number of game steps before policy update
    update_target: int = 1 # number of policy updates before target update
    lr: float = 1e-4
    optimizer_eps: float = 1e-8
@@ -37,14 +37,14 @@ class DQNConfig(BaseConfig):
    burn_in_eps: int = 1
 
    # Replay Buffer
-   prioritized: bool = True
+   prioritized: bool = False
    # lower alpha means more prioritization i.e more weight to TD error
    alpha: float = 0.6
     # lower beta means more importance sampling
    beta: float = 0.4
-   buffer_size: int = 100_000
-   batch_size: int = 128
-   burn_in: int = 128
+   buffer_size: int = 10_000
+   batch_size: int = 256
+   burn_in: int = 1_000
 
    # Evaluation
    num_eps: int = 100

@@ -3,7 +3,8 @@ from . import BaseConfig
 import torch
 
 @dataclass
-class RainbowConfig(BaseConfig):
+class SAD(BaseConfig):
+    encode_last_action: bool = True
     # General
     seed: int = 99
     wandb: bool = True
@@ -12,7 +13,7 @@ class RainbowConfig(BaseConfig):
     # Agent
     hidden_dim: int = 512
     depth: int = 2
-    noisy: bool = True
+    noisy: bool = False
     noise_std: float = 0.15
     distributional: bool = True
     n_atoms: int = 51
@@ -36,7 +37,7 @@ class RainbowConfig(BaseConfig):
     lr: float = 1e-4
     optimizer_eps: float = 1e-8
     clip_grad: float = 50.0
-    start_eps: float = 0.0
+    start_eps: float = 1.0
     end_eps: float = 0.0
     burn_in_eps: int = 1
 
