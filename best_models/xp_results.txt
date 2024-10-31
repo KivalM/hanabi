@@ -1,0 +1,41 @@
+IQL + RAINBOW
+{'mean': 1.208, 'std': 0.9086042046546936, 'avg_len': 28.787, 'max_reward': 5.0, 'avg_max_reward': 1.223, 'max_len': 30, 'min_len': 9, 'actions': [416, 11821, 1236, 619, 3187, 5959, 2215, 2295, 382, 260, 397]}
+
+IQL + RAINBOW-3
+{'mean': 0.782, 'std': 0.9150482416152954, 'avg_len': 27.922, 'max_reward': 5.0, 'avg_max_reward': 1.115, 'max_len': 30, 'min_len': 4, 'actions': [7514, 4244, 1489, 582, 2647, 6478, 1680, 1846, 654, 409, 379]}
+
+IQL + RAINBOW-5
+{'mean': 1.164, 'std': 0.7998397946357727, 'avg_len': 28.516, 'max_reward': 4.0, 'avg_max_reward': 1.185, 'max_len': 30, 'min_len': 4, 'actions': [3392, 8691, 1813, 91, 2765, 5028, 2541, 1899, 1055, 754, 487]}
+
+IQL + Distributed
+{'mean': 0.529, 'std': 0.8011246919631958, 'avg_len': 29.387, 'max_reward': 4.0, 'avg_max_reward': 0.529, 'max_len': 30, 'min_len': 28, 'actions': [1307, 11842, 596, 286, 2939, 7379, 172, 3272, 550, 332, 712]}
+
+Rainbow + IQL
+{'mean': 1.101, 'std': 0.9806939959526062, 'avg_len': 28.369, 'max_reward': 4.0, 'avg_max_reward': 1.11, 'max_len': 30, 'min_len': 3, 'actions': [201, 12057, 1177, 678, 3418, 6527, 1860, 1513, 419, 171, 348]}
+
+Rainbow + Rainbow-3
+{'mean': 1.493, 'std': 1.5976556539535522, 'avg_len': 25.742, 'max_reward': 7.0, 'avg_max_reward': 2.533, 'max_len': 29, 'min_len': 4, 'actions': [4478, 5293, 2284, 1517, 2487, 2342, 3534, 2901, 595, 183, 128]}
+
+Rainbow + Rainbow-5
+{'mean': 2.498, 'std': 1.398553490638733, 'avg_len': 26.602, 'max_reward': 6.0, 'avg_max_reward': 2.734, 'max_len': 29, 'min_len': 3, 'actions': [2795, 7744, 2662, 1033, 2140, 1655, 3067, 3785, 665, 731, 325]}
+
+Rainbow + Distributed
+{'mean': 1.364, 'std': 1.3569618463516235, 'avg_len': 25.763, 'max_reward': 6.0, 'avg_max_reward': 2.058, 'max_len': 30, 'min_len': 3, 'actions': [2834, 7346, 1810, 1412, 2096, 1384, 5042, 2494, 399, 408, 538]}
+
+Rainbow-3 + IQL
+{'mean': 0.914, 'std': 0.9452499747276306, 'avg_len': 27.875, 'max_reward': 5.0, 'avg_max_reward': 1.122, 'max_len': 30, 'min_len': 3, 'actions': [7869, 3703, 1338, 791, 2708, 7193, 1093, 1711, 768, 381, 320]}
+
+Rainbow-3 + Rainbow 
+
+
+Rainbow-3 + Rainbow-5
+{'mean': 1.867, 'std': 1.4082947969436646, 'avg_len': 26.982, 'max_reward': 5.0, 'avg_max_reward': 2.312, 'max_len': 29, 'min_len': 3, 'actions': [6896, 3826, 2822, 419, 1480, 1637, 3631, 3445, 1378, 1172, 276]}
+
+distributed + Rainbow
+{'mean': 1.61, 'std': 1.4013792276382446, 'avg_len': 26.715, 'max_reward': 7.0, 'avg_max_reward': 2.134, 'max_len': 30, 'min_len': 6, 'actions': [2386, 8212, 1678, 1483, 1974, 1223, 5282, 3020, 332, 357, 768]}
+
+SAD + SAD-3
+{'mean': 2.339, 'std': 1.0085117816925049, 'avg_len': 29.021, 'max_reward': 4.0, 'avg_max_reward': 2.357, 'max_len': 30, 'min_len': 27, 'actions': [3588, 8097, 2397, 349, 3711, 2389, 4492, 2900, 113, 426, 559]}
+
+SAD-3 + SAD
+{'mean': 2.118, 'std': 0.8287115097045898, 'avg_len': 28.98, 'max_reward': 5.0, 'avg_max_reward': 2.134, 'max_len': 30, 'min_len': 26, 'actions': [3914, 8271, 1796, 444, 3996, 2216, 4234, 2821, 158, 576, 554]}

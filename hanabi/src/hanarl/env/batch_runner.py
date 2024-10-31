@@ -245,6 +245,51 @@ class BatchRunner():
                 "actions": actions
             }
         
+    def evaluate_multi(self, agent_1:DQNAgent,agent_2:DQNAgent, num_episodes:int, seed:int, epsilon:float):
+        with torch.no_grad():
+            env = self.env_fn()
+            rewards = []
+            steps = []
+            max_rewards = []
+            actions = [0] * env.out_dim
+            for i in trange(num_episodes):
+                step = 0
+                max_reward = 0
+                new_seed = (i * (seed + 1)) * 999999 % 999999997
+                state = env.reset(seed=new_seed)
+                total_reward = 0
+                for player in env.agent_iter():
+                    if player == "player_0":
+                        agent = agent_1
+                    else:
+                        agent = agent_2
+                        
+                    if state['done'].item():
+                        break
+                    else:
+                        action = agent.act(state[player], epsilon=epsilon)
+                        actions[action['action']] += 1
+                    new_state = env.step(action['action'], action['greedy_action'])
+                    total_reward += new_state["next"][player]["reward"].detach().cpu().item()
+                    max_reward = max(max_reward, total_reward)
+                    state = new_state['next']
+                    step += 1
+
+                rewards.append(total_reward)
+                max_rewards.append(max_reward)
+                steps.append(step)
+            return {
+                "mean": sum(rewards) / len(rewards),
+                "std": torch.std(torch.tensor(rewards)).item(),
+                # "rewards": rewards
+                "avg_len": sum(steps) / len(steps),
+                "max_reward": max(max_rewards),
+                "avg_max_reward": sum(max_rewards) / len(max_rewards),
+                "max_len": max(steps),
+                "min_len": min(steps),
+                "actions": actions
+            }
+        
     def run_parallel(
             self,
             agent:DQNAgent, 
