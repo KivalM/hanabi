@@ -1,0 +1,12 @@
+{
+    "name": "Latex Development Container",
+    // image
+    "image": "qmcgaw/latexdevcontainer:latest-full",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "james-yu.latex-workshop"
+            ]
+        }
+    }
+}

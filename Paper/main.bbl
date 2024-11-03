@@ -1,0 +1,2692 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nty/global//global/global}
+  \entry{AlphaGoGoogleDeepMind}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{title}{{{AlphaGo}} - {{Google DeepMind}}}
+    \verb{url}
+    \verb https://deepmind.google/technologies/alphago/
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/YBS6MMLQ/alphago.html
+    \endverb
+    \field{urlday}{02}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{ArtificialIntelligenceSmart2021}{online}{}
+    \list{organization}{1}{%
+      {MIT News | Massachusetts Institute of Technology}%
+    }
+    \field{labeltitlesource}{title}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    When Lincoln Laboratory researchers paired humans up with an AI model trained to play a collaborative card game, they found that humans hated playing with the AI teammate when compared to a simpler rule-based agent.%
+    }
+    \field{title}{Artificial Intelligence Is Smart, but Does It Play Well with Others?}
+    \verb{url}
+    \verb https://news.mit.edu/2021/does-artificial-intelligence-play-well-othe
+    \verb rs-1004
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/2TZYXKZT/does-artificial-intelligence-
+    \verb play-well-others-1004.html
+    \endverb
+    \field{day}{04}
+    \field{month}{10}
+    \field{year}{2021}
+    \field{urlday}{29}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{asisMultistepReinforcementLearning2018}{online}{}
+    \name{author}{4}{}{%
+      {{hash=AKD}{%
+         family={Asis},
+         familyi={A\bibinitperiod},
+         given={Kristopher\bibnamedelima De},
+         giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=HGJF}{%
+         family={Hernandez-Garcia},
+         familyi={H\bibinithyphendelim G\bibinitperiod},
+         given={J.\bibnamedelima Fernando},
+         giveni={J\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=HGZ}{%
+         family={Holland},
+         familyi={H\bibinitperiod},
+         given={G.\bibnamedelima Zacharias},
+         giveni={G\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+      {{hash=SRS}{%
+         family={Sutton},
+         familyi={S\bibinitperiod},
+         given={Richard\bibnamedelima S.},
+         giveni={R\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning}
+    \strng{namehash}{AKD+1}
+    \strng{fullhash}{AKDHGJFHGZSRS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{A}
+    \field{sortinithash}{A}
+    \field{abstract}{%
+    Unifying seemingly disparate algorithmic ideas to produce better performing algorithms has been a longstanding goal in reinforcement learning. As a primary example, TD(λ) elegantly unifies one-step TD prediction with Monte Carlo methods through the use of eligibility traces and the trace-decay parameter λ. Currently, there are a multitude of algorithms that can be used to perform TD control, including Sarsa, Q-learning, and Expected Sarsa. These methods are often studied in the one-step case, but they can be extended across multiple time steps to achieve better performance. Each of these algorithms is seemingly distinct, and no one dominates the others for all problems. In this paper, we study a new multi-step action-value algorithm called Q(σ) that unifies and generalizes these existing algorithms, while subsuming them as special cases. A new parameter, σ, is introduced to allow the degree of sampling performed by the algorithm at each step during its backup to be continuously varied, with Sarsa existing at one extreme (full sampling), and Expected Sarsa existing at the other (pure expectation). Q(σ) is generally applicable to both on- and off-policy learning, but in this work we focus on experiments in the on-policy case. Our results show that an intermediate value of σ, which results in a mixture of the existing algorithms, performs better than either extreme. The mixture can also be varied dynamically which can result in even greater performance.%
+    }
+    \verb{eprint}
+    \verb 1703.01327
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{shorttitle}{Multi-Step {{Reinforcement Learning}}}
+    \field{title}{Multi-Step {{Reinforcement Learning}}: {{A Unifying Algorithm}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1703.01327
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/IAI4E2P3/Asis et al. - 2018 - Multi-st
+    \verb ep Reinforcement Learning A Unifying Algorithm.pdf
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{11}
+    \field{month}{06}
+    \field{year}{2018}
+    \field{urlday}{31}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{baconOptionCriticArchitecture2016}{online}{}
+    \name{author}{3}{}{%
+      {{hash=BPL}{%
+         family={Bacon},
+         familyi={B\bibinitperiod},
+         given={Pierre-Luc},
+         giveni={P\bibinithyphendelim L\bibinitperiod},
+      }}%
+      {{hash=HJ}{%
+         family={Harb},
+         familyi={H\bibinitperiod},
+         given={Jean},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PD}{%
+         family={Precup},
+         familyi={P\bibinitperiod},
+         given={Doina},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence}
+    \strng{namehash}{BPLHJPD1}
+    \strng{fullhash}{BPLHJPD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    Temporal abstraction is key to scaling up learning and planning in reinforcement learning. While planning with temporally extended actions is well understood, creating such abstractions autonomously from data has remained challenging. We tackle this problem in the framework of options [Sutton, Precup \& Singh, 1999; Precup, 2000]. We derive policy gradient theorems for options and propose a new option-critic architecture capable of learning both the internal policies and the termination conditions of options, in tandem with the policy over options, and without the need to provide any additional rewards or subgoals. Experimental results in both discrete and continuous environments showcase the flexibility and efficiency of the framework.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1609.05140
+    \endverb
+    \verb{eprint}
+    \verb 1609.05140
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{The {{Option-Critic Architecture}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1609.05140
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/BRAWWQNR/Bacon et al. - 2016 - The Opt
+    \verb ion-Critic Architecture.pdf;/home/skywalker/Zotero/storage/QTWDW9J2/1
+    \verb 609.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{03}
+    \field{month}{12}
+    \field{year}{2016}
+    \field{urlday}{25}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{bardHanabiChallengeNew2020a}{article}{}
+    \name{author}{15}{}{%
+      {{hash=BN}{%
+         family={Bard},
+         familyi={B\bibinitperiod},
+         given={Nolan},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=FJN}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob\bibnamedelima N.},
+         giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Chandar},
+         familyi={C\bibinitperiod},
+         given={Sarath},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Burch},
+         familyi={B\bibinitperiod},
+         given={Neil},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lanctot},
+         familyi={L\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SHF}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={H.\bibnamedelima Francis},
+         giveni={H\bibinitperiod\bibinitdelim F\bibinitperiod},
+      }}%
+      {{hash=PE}{%
+         family={Parisotto},
+         familyi={P\bibinitperiod},
+         given={Emilio},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=DV}{%
+         family={Dumoulin},
+         familyi={D\bibinitperiod},
+         given={Vincent},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Moitra},
+         familyi={M\bibinitperiod},
+         given={Subhodeep},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=HE}{%
+         family={Hughes},
+         familyi={H\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=DI}{%
+         family={Dunning},
+         familyi={D\bibinitperiod},
+         given={Iain},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Mourad},
+         familyi={M\bibinitperiod},
+         given={Shibl},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LH}{%
+         family={Larochelle},
+         familyi={L\bibinitperiod},
+         given={Hugo},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=BMG}{%
+         family={Bellemare},
+         familyi={B\bibinitperiod},
+         given={Marc\bibnamedelima G.},
+         giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Bowling},
+         familyi={B\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Challenge paper,Communication,Cooperative,Games,Imperfect information,Multi-agent learning,Reinforcement learning,Theory of mind}
+    \strng{namehash}{BN+1}
+    \strng{fullhash}{BNFJNCSBNLMSHFPEDVMSHEDIMSLHBMGBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    From the early days of computing, games have been important testbeds for studying how well machines can do sophisticated decision making. In recent years, machine learning has made dramatic advances with artificial agents reaching superhuman performance in challenge domains like Go, Atari, and some variants of poker. As with their predecessors of chess, checkers, and backgammon, these game domains have driven research by providing sophisticated yet well-defined challenges for artificial intelligence practitioners. We continue this tradition by proposing the game of Hanabi as a new challenge domain with novel problems that arise from its combination of purely cooperative gameplay with two to five players and imperfect information. In particular, we argue that Hanabi elevates reasoning about the beliefs and intentions of other agents to the foreground. We believe developing novel techniques for such theory of mind reasoning will not only be crucial for success in Hanabi, but also in broader collaborative efforts, especially those with human partners. To facilitate future research, we introduce the open-source Hanabi Learning Environment, propose an experimental framework for the research community to evaluate algorithmic advances, and assess the performance of current state-of-the-art techniques.%
+    }
+    \verb{doi}
+    \verb 10.1016/j.artint.2019.103216
+    \endverb
+    \field{issn}{0004-3702}
+    \field{pages}{103216}
+    \field{shortjournal}{Artificial Intelligence}
+    \field{shorttitle}{The {{Hanabi}} Challenge}
+    \field{title}{The {{Hanabi}} Challenge: {{A}} New Frontier for {{AI}} Research}
+    \verb{url}
+    \verb https://www.sciencedirect.com/science/article/pii/S0004370219300116
+    \endverb
+    \field{volume}{280}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/I788XF54/Bard et al. - 2020 - The Hana
+    \verb bi challenge A new frontier for AI resear.pdf;/home/skywalker/Zotero/
+    \verb storage/Z6Z5RHE8/S0004370219300116.html
+    \endverb
+    \field{journaltitle}{Artificial Intelligence}
+    \field{day}{01}
+    \field{month}{03}
+    \field{year}{2020}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{beckSurveyMetaReinforcementLearning2024}{online}{}
+    \name{author}{7}{}{%
+      {{hash=BJ}{%
+         family={Beck},
+         familyi={B\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=VR}{%
+         family={Vuorio},
+         familyi={V\bibinitperiod},
+         given={Risto},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=LEZ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Evan\bibnamedelima Zheran},
+         giveni={E\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+      {{hash=XZ}{%
+         family={Xiong},
+         familyi={X\bibinitperiod},
+         given={Zheng},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=ZL}{%
+         family={Zintgraf},
+         familyi={Z\bibinitperiod},
+         given={Luisa},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FC}{%
+         family={Finn},
+         familyi={F\bibinitperiod},
+         given={Chelsea},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Whiteson},
+         familyi={W\bibinitperiod},
+         given={Shimon},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning}
+    \strng{namehash}{BJ+1}
+    \strng{fullhash}{BJVRLEZXZZLFCWS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    While deep reinforcement learning (RL) has fueled multiple high-profile successes in machine learning, it is held back from more widespread adoption by its often poor data efficiency and the limited generality of the policies it produces. A promising approach for alleviating these limitations is to cast the development of better RL algorithms as a machine learning problem itself in a process called meta-RL. Meta-RL is most commonly studied in a problem setting where, given a distribution of tasks, the goal is to learn a policy that is capable of adapting to any new task from the task distribution with as little data as possible. In this survey, we describe the meta-RL problem setting in detail as well as its major variations. We discuss how, at a high level, meta-RL research can be clustered based on the presence of a task distribution and the learning budget available for each individual task. Using these clusters, we then survey meta-RL algorithms and applications. We conclude by presenting the open problems on the path to making meta-RL part of the standard toolbox for a deep RL practitioner.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2301.08028
+    \endverb
+    \verb{eprint}
+    \verb 2301.08028
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{A {{Survey}} of {{Meta-Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2301.08028
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/72B4PEKI/Beck et al. - 2024 - A Survey
+    \verb  of Meta-Reinforcement Learning.pdf;/home/skywalker/Zotero/storage/27
+    \verb Q4ZTJK/2301.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{16}
+    \field{month}{08}
+    \field{year}{2024}
+    \field{urlday}{30}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{bellemareDistributionalPerspectiveReinforcement2017}{online}{}
+    \name{author}{3}{}{%
+      {{hash=BMG}{%
+         family={Bellemare},
+         familyi={B\bibinitperiod},
+         given={Marc\bibnamedelima G.},
+         giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=DW}{%
+         family={Dabney},
+         familyi={D\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Munos},
+         familyi={M\bibinitperiod},
+         given={Rémi},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning}
+    \strng{namehash}{BMGDWMR1}
+    \strng{fullhash}{BMGDWMR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    In this paper we argue for the fundamental importance of the value distribution: the distribution of the random return received by a reinforcement learning agent. This is in contrast to the common approach to reinforcement learning which models the expectation of this return, or value. Although there is an established body of literature studying the value distribution, thus far it has always been used for a specific purpose such as implementing risk-aware behaviour. We begin with theoretical results in both the policy evaluation and control settings, exposing a significant distributional instability in the latter. We then use the distributional perspective to design a new algorithm which applies Bellman’s equation to the learning of approximate value distributions. We evaluate our algorithm using the suite of games from the Arcade Learning Environment. We obtain both state-of-the-art results and anecdotal evidence demonstrating the importance of the value distribution in approximate reinforcement learning. Finally, we combine theoretical and empirical evidence to highlight the ways in which the value distribution impacts learning in the approximate setting.%
+    }
+    \verb{eprint}
+    \verb 1707.06887
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{A {{Distributional Perspective}} on {{Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1707.06887
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/WMCIEKDY/Bellemare et al. - 2017 - A D
+    \verb istributional Perspective on Reinforcement Learning.pdf
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{21}
+    \field{month}{07}
+    \field{year}{2017}
+    \field{urlday}{28}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{bhallaDeepMultiAgent2020}{article}{}
+    \name{author}{3}{}{%
+      {{hash=BS}{%
+         family={Bhalla},
+         familyi={B\bibinitperiod},
+         given={Sushrut},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=SSG}{%
+         family={Subramanian},
+         familyi={S\bibinitperiod},
+         given={Sriram\bibnamedelima Ganapathi},
+         giveni={S\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=CM}{%
+         family={Crowley},
+         familyi={C\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer International Publishing}%
+    }
+    \strng{namehash}{BSSSGCM1}
+    \strng{fullhash}{BSSSGCM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{pages}{67\bibrangedash 78}
+    \field{title}{Deep {{Multi Agent Reinforcement Learning}} for {{Autonomous Driving}}}
+    \verb{url}
+    \verb https://cir.nii.ac.jp/crid/1363107370885035008
+    \endverb
+    \field{journaltitle}{Advances in Artificial Intelligence}
+    \field{year}{2020}
+    \field{urlday}{02}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{bouTorchRLDatadrivenDecisionmaking2023}{online}{}
+    \name{author}{8}{}{%
+      {{hash=BA}{%
+         family={Bou},
+         familyi={B\bibinitperiod},
+         given={Albert},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Bettini},
+         familyi={B\bibinitperiod},
+         given={Matteo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=DS}{%
+         family={Dittert},
+         familyi={D\bibinitperiod},
+         given={Sebastian},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=KV}{%
+         family={Kumar},
+         familyi={K\bibinitperiod},
+         given={Vikash},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Sodhani},
+         familyi={S\bibinitperiod},
+         given={Shagun},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=YX}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Xiaomeng},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=FGD}{%
+         family={Fabritiis},
+         familyi={F\bibinitperiod},
+         given={Gianni\bibnamedelima De},
+         giveni={G\bibinitperiod\bibinitdelim D\bibinitperiod},
+      }}%
+      {{hash=MV}{%
+         family={Moens},
+         familyi={M\bibinitperiod},
+         given={Vincent},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning}
+    \strng{namehash}{BA+1}
+    \strng{fullhash}{BABMDSKVSSYXFGDMV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{B}
+    \field{sortinithash}{B}
+    \field{abstract}{%
+    PyTorch has ascended as a premier machine learning framework, yet it lacks a native and comprehensive library for decision and control tasks suitable for large development teams dealing with complex real-world data and environments. To address this issue, we propose TorchRL, a generalistic control library for PyTorch that provides well-integrated, yet standalone components. We introduce a new and flexible PyTorch primitive, the TensorDict, which facilitates streamlined algorithm development across the many branches of Reinforcement Learning (RL) and control. We provide a detailed description of the building blocks and an extensive overview of the library across domains and tasks. Finally, we experimentally demonstrate its reliability and flexibility and show comparative benchmarks to demonstrate its computational efficiency. TorchRL fosters long-term support and is publicly available on GitHub for greater reproducibility and collaboration within the research community. The code is open-sourced on GitHub.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2306.00577
+    \endverb
+    \verb{eprint}
+    \verb 2306.00577
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{shorttitle}{{{TorchRL}}}
+    \field{title}{{{TorchRL}}: {{A}} Data-Driven Decision-Making Library for {{PyTorch}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2306.00577
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/RD8KAC9H/Bou et al. - 2023 - TorchRL A
+    \verb  data-driven decision-making library for PyTorch.pdf;/home/skywalker/
+    \verb Zotero/storage/QEFRHRQS/2306.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{27}
+    \field{month}{11}
+    \field{year}{2023}
+    \field{urlday}{29}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{canaanDiverseAgentsAdHoc2019}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=CR}{%
+         family={Canaan},
+         familyi={C\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Togelius},
+         familyi={T\bibinitperiod},
+         given={Julian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NA}{%
+         family={Nealen},
+         familyi={N\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Menzel},
+         familyi={M\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {IEEE}%
+    }
+    \strng{namehash}{CR+1}
+    \strng{fullhash}{CRTJNAMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    In this work we present the Hanabi Open Agent Dataset (HOAD)—meant to address the current lack of Hanabi datasets, HOAD is an easily extensible, open-sourced, and comprehensive collection of existing Hanabi playing agents, all ported to the Hanabi Learning Environment (HLE). We give a description and analysis of each agent’s strategy, and we also show cross-play performance between all the agents, demonstrating both their high quality and diversity of strategy. These properties make HOAD especially well suited to studies involving meta-learning and transfer learning. Finally, we describe in detail an easy way to add new agents to HOAD regardless of the origin codebase of the agent and make our code and dataset publicly available at https://github.com/aronsar/hoad.%
+    }
+    \field{booktitle}{2019 {{IEEE Conference}} on {{Games}} ({{CoG}})}
+    \verb{doi}
+    \verb 10.1109/CIG.2019.8847944
+    \endverb
+    \field{eventtitle}{2019 {{IEEE Conference}} on {{Games}} ({{CoG}})}
+    \field{isbn}{978-1-72811-884-0}
+    \field{pages}{1\bibrangedash 8}
+    \field{title}{Diverse {{Agents}} for {{Ad-Hoc Cooperation}} in {{Hanabi}}}
+    \verb{url}
+    \verb https://ieeexplore.ieee.org/document/8847944/
+    \endverb
+    \field{langid}{english}
+    \list{location}{1}{%
+      {London, United Kingdom}%
+    }
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/TWL9TJRM/Canaan et al. - 2019 - Divers
+    \verb e Agents for Ad-Hoc Cooperation in Hanabi.pdf
+    \endverb
+    \field{month}{08}
+    \field{year}{2019}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{canaanEvaluatingRlAgents2020}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=CR}{%
+         family={Canaan},
+         familyi={C\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GX}{%
+         family={Gao},
+         familyi={G\bibinitperiod},
+         given={Xianbo},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Youjin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Togelius},
+         familyi={T\bibinitperiod},
+         given={Julian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NA}{%
+         family={Nealen},
+         familyi={N\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Menzel},
+         familyi={M\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{CR+1}
+    \strng{fullhash}{CRGXCYTJNAMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{{{AAAI}}’20 {{Reinforcement Learning}} in {{Games Workshop}}}
+    \field{title}{Evaluating Rl Agents in Hanabi with Unseen Partners}
+    \verb{url}
+    \verb https://www.honda-ri.de/pubs/pdf/4260.pdf
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/CY7P53AY/Canaan et al. - 2020 - Evalua
+    \verb ting rl agents in hanabi with unseen partner.pdf
+    \endverb
+    \field{year}{2020}
+    \field{urlday}{24}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{canaanEvaluatingRainbowDQN2020}{online}{}
+    \name{author}{6}{}{%
+      {{hash=CR}{%
+         family={Canaan},
+         familyi={C\bibinitperiod},
+         given={Rodrigo},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=GX}{%
+         family={Gao},
+         familyi={G\bibinitperiod},
+         given={Xianbo},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=CY}{%
+         family={Chung},
+         familyi={C\bibinitperiod},
+         given={Youjin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Togelius},
+         familyi={T\bibinitperiod},
+         given={Julian},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=NA}{%
+         family={Nealen},
+         familyi={N\bibinitperiod},
+         given={Andy},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MS}{%
+         family={Menzel},
+         familyi={M\bibinitperiod},
+         given={Stefan},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing}
+    \strng{namehash}{CR+1}
+    \strng{fullhash}{CRGXCYTJNAMS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    Hanabi is a cooperative game that challenges exist-ing AI techniques due to its focus on modeling the mental states ofother players to interpret and predict their behavior. While thereare agents that can achieve near-perfect scores in the game byagreeing on some shared strategy, comparatively little progresshas been made in ad-hoc cooperation settings, where partnersand strategies are not known in advance. In this paper, we showthat agents trained through self-play using the popular RainbowDQN architecture fail to cooperate well with simple rule-basedagents that were not seen during training and, conversely, whenthese agents are trained to play with any individual rule-basedagent, or even a mix of these agents, they fail to achieve goodself-play scores.%
+    }
+    \verb{eprint}
+    \verb 2004.13291
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Evaluating the {{Rainbow DQN Agent}} in {{Hanabi}} with {{Unseen Partners}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2004.13291
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/G4YFLMKH/Canaan et al. - 2020 - Evalua
+    \verb ting the Rainbow DQN Agent in Hanabi with Un.pdf;/home/skywalker/Zote
+    \verb ro/storage/UCJDV64S/2004.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{28}
+    \field{month}{04}
+    \field{year}{2020}
+    \field{urlday}{24}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{coxHowMakePerfect2015}{article}{}
+    \name{author}{6}{}{%
+      {{hash=CC}{%
+         family={Cox},
+         familyi={C\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=DSJ}{%
+         family={De\bibnamedelima Silva},
+         familyi={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+         given={Jessica},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=DP}{%
+         family={Deorsey},
+         familyi={D\bibinitperiod},
+         given={Philip},
+         giveni={P\bibinitperiod},
+      }}%
+      {{hash=KFHJ}{%
+         family={Kenter},
+         familyi={K\bibinitperiod},
+         given={Franklin H.\bibnamedelima J.},
+         giveni={F\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+      {{hash=RT}{%
+         family={Retter},
+         familyi={R\bibinitperiod},
+         given={Troy},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=TJ}{%
+         family={Tobin},
+         familyi={T\bibinitperiod},
+         given={Josh},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Taylor \& Francis}%
+    }
+    \strng{namehash}{CC+1}
+    \strng{fullhash}{CCDSJDPKFHJRTTJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{abstract}{%
+    The game of Hanabi is a multiplayer cooperative card game that has many similarities to a mathematical “hat guessing game.” In Hanabi, a player does not see the cards in her own hand and must rely on the actions of the other players to determine information about her cards. This article presents two strategies for Hanabi. These strategies use different encoding schemes, based on ideas from network coding, to efficiently relay information. The first strategy allows players to effectively recommend moves for other players, and the second strategy allows players to determine the contents of their hands. Results from computer simulations demonstrate that both strategies perform well. In particular, the second strategy achieves a perfect score more than 75 percent of the time.%
+    }
+    \verb{doi}
+    \verb 10.4169/math.mag.88.5.323
+    \endverb
+    \field{issn}{0025-570X}
+    \field{number}{5}
+    \field{pages}{323\bibrangedash 336}
+    \field{shorttitle}{How to {{Make}} the {{Perfect Fireworks Display}}}
+    \field{title}{How to {{Make}} the {{Perfect Fireworks Display}}: {{Two Strategies}} for {{Hanabi}}}
+    \verb{url}
+    \verb https://doi.org/10.4169/math.mag.88.5.323
+    \endverb
+    \field{volume}{88}
+    \field{journaltitle}{Mathematics Magazine}
+    \field{day}{01}
+    \field{month}{12}
+    \field{year}{2015}
+    \field{urlday}{14}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{cuiKlevelReasoningZeroShot2021}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=CB}{%
+         family={Cui},
+         familyi={C\bibinitperiod},
+         given={Brandon},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hengyuan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Pineda},
+         familyi={P\bibinitperiod},
+         given={Luis},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=FJ}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Curran Associates, Inc.}%
+    }
+    \strng{namehash}{CB+1}
+    \strng{fullhash}{CBHHPLFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{C}
+    \field{sortinithash}{C}
+    \field{booktitle}{Advances in {{Neural Information Processing Systems}}}
+    \field{pages}{8215\bibrangedash 8228}
+    \field{title}{K-Level {{Reasoning}} for {{Zero-Shot Coordination}} in {{Hanabi}}}
+    \verb{url}
+    \verb https://proceedings.neurips.cc/paper_files/paper/2021/hash/4547dff5fd
+    \verb 7604f18c8ee32cf3da41d7-Abstract.html
+    \endverb
+    \field{volume}{34}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/38XTYK7L/Cui et al. - 2021 - K-level R
+    \verb easoning for Zero-Shot Coordination in Ha.pdf
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{dafoeOpenProblemsCooperative2020}{online}{}
+    \name{author}{8}{}{%
+      {{hash=DA}{%
+         family={Dafoe},
+         familyi={D\bibinitperiod},
+         given={Allan},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=HE}{%
+         family={Hughes},
+         familyi={H\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=BY}{%
+         family={Bachrach},
+         familyi={B\bibinitperiod},
+         given={Yoram},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Collins},
+         familyi={C\bibinitperiod},
+         given={Tantum},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=MKR}{%
+         family={McKee},
+         familyi={M\bibinitperiod},
+         given={Kevin\bibnamedelima R.},
+         giveni={K\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=LJZ}{%
+         family={Leibo},
+         familyi={L\bibinitperiod},
+         given={Joel\bibnamedelima Z.},
+         giveni={J\bibinitperiod\bibinitdelim Z\bibinitperiod},
+      }}%
+      {{hash=LK}{%
+         family={Larson},
+         familyi={L\bibinitperiod},
+         given={Kate},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=GT}{%
+         family={Graepel},
+         familyi={G\bibinitperiod},
+         given={Thore},
+         giveni={T\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Multiagent Systems}
+    \strng{namehash}{DA+1}
+    \strng{fullhash}{DAHEBYCTMKRLJZLKGT1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{D}
+    \field{sortinithash}{D}
+    \field{abstract}{%
+    Problems of cooperation--in which agents seek ways to jointly improve their welfare--are ubiquitous and important. They can be found at scales ranging from our daily routines--such as driving on highways, scheduling meetings, and working collaboratively--to our global challenges--such as peace, commerce, and pandemic preparedness. Arguably, the success of the human species is rooted in our ability to cooperate. Since machines powered by artificial intelligence are playing an ever greater role in our lives, it will be important to equip them with the capabilities necessary to cooperate and to foster cooperation. We see an opportunity for the field of artificial intelligence to explicitly focus effort on this class of problems, which we term Cooperative AI. The objective of this research would be to study the many aspects of the problems of cooperation and to innovate in AI to contribute to solving these problems. Central goals include building machine agents with the capabilities needed for cooperation, building tools to foster cooperation in populations of (machine and/or human) agents, and otherwise conducting AI research for insight relevant to problems of cooperation. This research integrates ongoing work on multi-agent systems, game theory and social choice, human-machine interaction and alignment, natural-language processing, and the construction of social tools and platforms. However, Cooperative AI is not the union of these existing areas, but rather an independent bet about the productivity of specific kinds of conversations that involve these and other areas. We see opportunity to more explicitly focus on the problem of cooperation, to construct unified theory and vocabulary, and to build bridges with adjacent communities working on cooperation, including in the natural, social, and behavioural sciences.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2012.08630
+    \endverb
+    \verb{eprint}
+    \verb 2012.08630
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Open {{Problems}} in {{Cooperative AI}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2012.08630
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/FUAXKQLM/Dafoe et al. - 2020 - Open Pr
+    \verb oblems in Cooperative AI.pdf;/home/skywalker/Zotero/storage/YEK654ED/
+    \verb 2012.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{15}
+    \field{month}{12}
+    \field{year}{2020}
+    \field{urlday}{02}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{foersterBayesianActionDecoder2019}{inproceedings}{}
+    \name{author}{8}{}{%
+      {{hash=FJ}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=SF}{%
+         family={Song},
+         familyi={S\bibinitperiod},
+         given={Francis},
+         giveni={F\bibinitperiod},
+      }}%
+      {{hash=HE}{%
+         family={Hughes},
+         familyi={H\bibinitperiod},
+         given={Edward},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Burch},
+         familyi={B\bibinitperiod},
+         given={Neil},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=DI}{%
+         family={Dunning},
+         familyi={D\bibinitperiod},
+         given={Iain},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=WS}{%
+         family={Whiteson},
+         familyi={W\bibinitperiod},
+         given={Shimon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Botvinick},
+         familyi={B\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=BM}{%
+         family={Bowling},
+         familyi={B\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{FJ+1}
+    \strng{fullhash}{FJSFHEBNDIWSBMBM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    When observing the actions of others, humans make inferences about why they acted as they did, and what this implies about the world; humans also use the fact that their actions will be interpreted in this manner, allowing them to act informatively and thereby communicate efficiently with others. Although learning algorithms have recently achieved superhuman performance in a number of two-player, zero-sum games, scalable multi-agent reinforcement learning algorithms that can discover effective strategies and conventions in complex, partially observable settings have proven elusive. We present the Bayesian action decoder (BAD), a new multi-agent learning method that uses an approximate Bayesian update to obtain a public belief that conditions on the actions taken by all agents in the environment. BAD introduces a new Markov decision process, the public belief MDP, in which the action space consists of all deterministic partial policies, and exploits the fact that an agent acting only on this public belief state can still learn to use its private information if the action space is augmented to be over all partial policies mapping private information into environment actions. The Bayesian update is closely related to the theory of mind reasoning that humans carry out when observing others’ actions. We first validate BAD on a proof-of-principle two-step matrix game, where it outperforms policy gradient methods; we then evaluate BAD on the challenging, cooperative partial-information card game Hanabi, where, in the two-player setting, it surpasses all previously published learning and hand-coded approaches, establishing a new state of the art.%
+    }
+    \field{booktitle}{Proceedings of the 36th {{International Conference}} on {{Machine Learning}}}
+    \field{eventtitle}{International {{Conference}} on {{Machine Learning}}}
+    \field{issn}{2640-3498}
+    \field{pages}{1942\bibrangedash 1951}
+    \field{title}{Bayesian {{Action Decoder}} for {{Deep Multi-Agent Reinforcement Learning}}}
+    \verb{url}
+    \verb https://proceedings.mlr.press/v97/foerster19a.html
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/K7HU7YRU/Foerster et al. - 2019 - Baye
+    \verb sian Action Decoder for Deep Multi-Agent Reinf.pdf;/home/skywalker/Zo
+    \verb tero/storage/PLCC7BCC/Foerster et al. - 2019 - Bayesian Action Decode
+    \verb r for Deep Multi-Agent Reinf.pdf
+    \endverb
+    \field{day}{24}
+    \field{month}{05}
+    \field{year}{2019}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{fortunatoNoisyNetworksExploration2019}{online}{}
+    \name{author}{12}{}{%
+      {{hash=FM}{%
+         family={Fortunato},
+         familyi={F\bibinitperiod},
+         given={Meire},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=AMG}{%
+         family={Azar},
+         familyi={A\bibinitperiod},
+         given={Mohammad\bibnamedelima Gheshlaghi},
+         giveni={M\bibinitperiod\bibinitdelim G\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Piot},
+         familyi={P\bibinitperiod},
+         given={Bilal},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Menick},
+         familyi={M\bibinitperiod},
+         given={Jacob},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=OI}{%
+         family={Osband},
+         familyi={O\bibinitperiod},
+         given={Ian},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Graves},
+         familyi={G\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=MV}{%
+         family={Mnih},
+         familyi={M\bibinitperiod},
+         given={Vlad},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Munos},
+         familyi={M\bibinitperiod},
+         given={Remi},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Hassabis},
+         familyi={H\bibinitperiod},
+         given={Demis},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PO}{%
+         family={Pietquin},
+         familyi={P\bibinitperiod},
+         given={Olivier},
+         giveni={O\bibinitperiod},
+      }}%
+      {{hash=BC}{%
+         family={Blundell},
+         familyi={B\bibinitperiod},
+         given={Charles},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LS}{%
+         family={Legg},
+         familyi={L\bibinitperiod},
+         given={Shane},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning,Statistics - Machine Learning}
+    \strng{namehash}{FM+1}
+    \strng{fullhash}{FMAMGPBMJOIGAMVMRHDPOBCLS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    We introduce NoisyNet, a deep reinforcement learning agent with parametric noise added to its weights, and show that the induced stochasticity of the agent's policy can be used to aid efficient exploration. The parameters of the noise are learned with gradient descent along with the remaining network weights. NoisyNet is straightforward to implement and adds little computational overhead. We find that replacing the conventional exploration heuristics for A3C, DQN and dueling agents (entropy reward and \$\textbackslash epsilon\$-greedy respectively) with NoisyNet yields substantially higher scores for a wide range of Atari games, in some cases advancing the agent from sub to super-human performance.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1706.10295
+    \endverb
+    \verb{eprint}
+    \verb 1706.10295
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Noisy {{Networks}} for {{Exploration}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1706.10295
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/ZKKN2SYP/Fortunato et al. - 2019 - Noi
+    \verb sy Networks for Exploration.pdf;/home/skywalker/Zotero/storage/24HPPQ
+    \verb BZ/1706.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{09}
+    \field{month}{07}
+    \field{year}{2019}
+    \field{urlday}{28}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{fuchsTheoryMindDeep2021}{online}{}
+    \name{author}{4}{}{%
+      {{hash=FA}{%
+         family={Fuchs},
+         familyi={F\bibinitperiod},
+         given={Andrew},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=WM}{%
+         family={Walton},
+         familyi={W\bibinitperiod},
+         given={Michael},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CT}{%
+         family={Chadwick},
+         familyi={C\bibinitperiod},
+         given={Theresa},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=LD}{%
+         family={Lange},
+         familyi={L\bibinitperiod},
+         given={Doug},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence}
+    \strng{namehash}{FA+1}
+    \strng{fullhash}{FAWMCTLD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{F}
+    \field{sortinithash}{F}
+    \field{abstract}{%
+    The partially observable card game Hanabi has recently been proposed as a new AI challenge problem due to its dependence on implicit communication conventions and apparent necessity of theory of mind reasoning for efficient play. In this work, we propose a mechanism for imbuing Reinforcement Learning agents with a theory of mind to discover efficient cooperative strategies in Hanabi. The primary contributions of this work are threefold: First, a formal definition of a computationally tractable mechanism for computing hand probabilities in Hanabi. Second, an extension to conventional Deep Reinforcement Learning that introduces reasoning over finitely nested theory of mind belief hierarchies. Finally, an intrinsic reward mechanism enabled by theory of mind that incentivizes agents to share strategically relevant private knowledge with their teammates. We demonstrate the utility of our algorithm against Rainbow, a state-of-the-art Reinforcement Learning agent.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2101.09328
+    \endverb
+    \verb{eprint}
+    \verb 2101.09328
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Theory of {{Mind}} for {{Deep Reinforcement Learning}} in {{Hanabi}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2101.09328
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/FLPXQ5QK/Fuchs et al. - 2021 - Theory
+    \verb of Mind for Deep Reinforcement Learning in .pdf;/home/skywalker/Zoter
+    \verb o/storage/HIRJMAAE/2101.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{22}
+    \field{month}{01}
+    \field{year}{2021}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{googleAlphaStarMasteringRealtime2019}{online}{}
+    \name{author}{1}{}{%
+      {{hash=GD}{%
+         family={Google},
+         familyi={G\bibinitperiod},
+         given={Deepmind},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \list{organization}{1}{%
+      {Google DeepMind}%
+    }
+    \strng{namehash}{GD1}
+    \strng{fullhash}{GD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    Games have been used for decades as an important way to test and evaluate the performance of artificial intelligence systems. As capabilities have increased, the research community has sought...%
+    }
+    \field{shorttitle}{{{AlphaStar}}}
+    \field{title}{{{AlphaStar}}: {{Mastering}} the Real-Time Strategy Game {{StarCraft II}}}
+    \verb{url}
+    \verb https://deepmind.google/discover/blog/alphastar-mastering-the-real-ti
+    \verb me-strategy-game-starcraft-ii/
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/47CHWMCU/alphastar-mastering-the-real-
+    \verb time-strategy-game-starcraft-ii.html
+    \endverb
+    \field{day}{24}
+    \field{month}{01}
+    \field{year}{2019}
+    \field{urlday}{02}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{GoogledeepmindHanabilearningenvironment2024}{software}{}
+    \list{organization}{1}{%
+      {Google DeepMind}%
+    }
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{abstract}{%
+    hanabi\_learning\_environment is a research platform for Hanabi experiments.%
+    }
+    \field{title}{Google-Deepmind/Hanabi-Learning-Environment}
+    \verb{url}
+    \verb https://github.com/google-deepmind/hanabi-learning-environment
+    \endverb
+    \field{urlday}{09}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+    \warn{\item Invalid format of field 'date' \item Invalid format of field 'date' \item Invalid format of field 'origdate'}
+  \endentry
+
+  \entry{grootenDeepReinforcementLearning2021}{article}{}
+    \name{author}{1}{}{%
+      {{hash=GB}{%
+         family={Grooten},
+         familyi={G\bibinitperiod},
+         given={Bram},
+         giveni={B\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{GB1}
+    \strng{fullhash}{GB1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{G}
+    \field{sortinithash}{G}
+    \field{title}{Deep {{Reinforcement Learning}} for the Cooperative Card Game {{Hanabi}}}
+    \verb{url}
+    \verb https://research.tue.nl/files/190273227/Grooten_B.pdf
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/YKZG8Q9Q/Grooten - 2021 - Deep Reinfor
+    \verb cement Learning for the cooperative ca.pdf
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{24}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{hafizDeepQNetworkBased2020}{online}{}
+    \name{author}{2}{}{%
+      {{hash=HAM}{%
+         family={Hafiz},
+         familyi={H\bibinitperiod},
+         given={Abdul\bibnamedelima Mueed},
+         giveni={A\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+      {{hash=BGM}{%
+         family={Bhat},
+         familyi={B\bibinitperiod},
+         given={Ghulam\bibnamedelima Mohiuddin},
+         giveni={G\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Multiagent Systems,Computer Science - Systems and Control,Electrical Engineering and Systems Science - Systems and Control,Statistics - Machine Learning}
+    \strng{namehash}{HAMBGM1}
+    \strng{fullhash}{HAMBGM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    Deep Q-Network (DQN) based multi-agent systems (MAS) for reinforcement learning (RL) use various schemes where in the agents have to learn and communicate. The learning is however specific to each agent and communication may be satisfactorily designed for the agents. As more complex Deep QNetworks come to the fore, the overall complexity of the multi-agent system increases leading to issues like difficulty in training, need for higher resources and more training time, difficulty in fine-tuning, etc. To address these issues we propose a simple but efficient DQN based MAS for RL which uses shared state and rewards, but agent-specific actions, for updation of the experience replay pool of the DQNs, where each agent is a DQN. The benefits of the approach are overall simplicity, faster convergence and better performance as compared to conventional DQN based approaches. It should be noted that the method can be extended to any DQN. As such we use simple DQN and DDQN (Double Q-learning) respectively on three separate tasks i.e. Cartpole-v1 (OpenAI Gym environment) , LunarLander-v2 (OpenAI Gym environment) and Maze Traversal (customized environment). The proposed approach outperforms the baseline on these tasks by decent margins respectively.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2008.04109
+    \endverb
+    \verb{eprint}
+    \verb 2008.04109
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Deep {{Q-Network Based Multi-agent Reinforcement Learning}} with {{Binary Action Agents}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2008.04109
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/EXHB2JQM/Hafiz and Bhat - 2020 - Deep
+    \verb Q-Network Based Multi-agent Reinforcement Learning with Binary Action
+    \verb  Agents.pdf;/home/skywalker/Zotero/storage/ZQAFU5CL/2008.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{06}
+    \field{month}{08}
+    \field{year}{2020}
+    \field{urlday}{31}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{hasseltDeepReinforcementLearning2016a}{article}{}
+    \name{author}{3}{}{%
+      {{hash=vHH}{%
+         prefix={van},
+         prefixi={v\bibinitperiod},
+         family={Hasselt},
+         familyi={H\bibinitperiod},
+         given={Hado},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Guez},
+         familyi={G\bibinitperiod},
+         given={Arthur},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Silver},
+         familyi={S\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{HHvGASD1}
+    \strng{fullhash}{HHvGASD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    The popular Q-learning algorithm is known to overestimate action values under certain conditions. It was not previously known whether, in practice, such overestimations are common, whether they harm performance, and whether they can generally be prevented. In this paper, we answer all these questions affirmatively. In particular, we first show that the recent DQN algorithm, which combines Q-learning with a deep neural network, suffers from substantial overestimations in some games in the Atari 2600 domain. We then show that the idea behind the Double Q-learning algorithm, which was introduced in a tabular setting, can be generalized to work with large-scale function approximation. We propose a specific adaptation to the DQN algorithm and show that the resulting algorithm not only reduces the observed overestimations, as hypothesized, but that this also leads to much better performance on several games.%
+    }
+    \verb{doi}
+    \verb 10.1609/aaai.v30i1.10295
+    \endverb
+    \field{issn}{2374-3468}
+    \field{issue}{1}
+    \field{number}{1}
+    \field{title}{Deep {{Reinforcement Learning}} with {{Double Q-Learning}}}
+    \verb{url}
+    \verb https://ojs.aaai.org/index.php/AAAI/article/view/10295
+    \endverb
+    \field{volume}{30}
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/4BQIKCGU/Hasselt et al. - 2016 - Deep
+    \verb Reinforcement Learning with Double Q-Learning.pdf
+    \endverb
+    \field{journaltitle}{Proceedings of the AAAI Conference on Artificial Intelligence}
+    \field{day}{02}
+    \field{month}{03}
+    \field{year}{2016}
+    \field{urlday}{28}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{hesselRainbowCombiningImprovements2017}{online}{}
+    \name{author}{9}{}{%
+      {{hash=HM}{%
+         family={Hessel},
+         familyi={H\bibinitperiod},
+         given={Matteo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=MJ}{%
+         family={Modayil},
+         familyi={M\bibinitperiod},
+         given={Joseph},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Schaul},
+         familyi={S\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=OG}{%
+         family={Ostrovski},
+         familyi={O\bibinitperiod},
+         given={Georg},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=DW}{%
+         family={Dabney},
+         familyi={D\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=HD}{%
+         family={Horgan},
+         familyi={H\bibinitperiod},
+         given={Dan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PB}{%
+         family={Piot},
+         familyi={P\bibinitperiod},
+         given={Bilal},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Azar},
+         familyi={A\bibinitperiod},
+         given={Mohammad},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Silver},
+         familyi={S\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning}
+    \strng{namehash}{HM+1}
+    \strng{fullhash}{HMMJSTOGDWHDPBAMSD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    The deep reinforcement learning community has made several independent improvements to the DQN algorithm. However, it is unclear which of these extensions are complementary and can be fruitfully combined. This paper examines six extensions to the DQN algorithm and empirically studies their combination. Our experiments show that the combination provides state-of-the-art performance on the Atari 2600 benchmark, both in terms of data efficiency and final performance. We also provide results from a detailed ablation study that shows the contribution of each component to overall performance.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1710.02298
+    \endverb
+    \verb{eprint}
+    \verb 1710.02298
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{shorttitle}{Rainbow}
+    \field{title}{Rainbow: {{Combining Improvements}} in {{Deep Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1710.02298
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/EKCQYFZ6/Hessel et al. - 2017 - Rainbo
+    \verb w Combining Improvements in Deep Reinforcem.pdf;/home/skywalker/Zoter
+    \verb o/storage/KC9BYBRJ/1710.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{06}
+    \field{month}{10}
+    \field{year}{2017}
+    \field{urlday}{16}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{huSimplifiedActionDecoder2021}{online}{}
+    \name{author}{2}{}{%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hengyuan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=FJN}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob\bibnamedelima N.},
+         giveni={J\bibinitperiod\bibinitdelim N\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence}
+    \strng{namehash}{HHFJN1}
+    \strng{fullhash}{HHFJN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    In recent years we have seen fast progress on a number of benchmark problems in AI, with modern methods achieving near or super human performance in Go, Poker and Dota. One common aspect of all of these challenges is that they are by design adversarial or, technically speaking, zero-sum. In contrast to these settings, success in the real world commonly requires humans to collaborate and communicate with others, in settings that are, at least partially, cooperative. In the last year, the card game Hanabi has been established as a new benchmark environment for AI to fill this gap. In particular, Hanabi is interesting to humans since it is entirely focused on theory of mind, i.e., the ability to effectively reason over the intentions, beliefs and point of view of other agents when observing their actions. Learning to be informative when observed by others is an interesting challenge for Reinforcement Learning (RL): Fundamentally, RL requires agents to explore in order to discover good policies. However, when done naively, this randomness will inherently make their actions less informative to others during training. We present a new deep multi-agent RL method, the Simplified Action Decoder (SAD), which resolves this contradiction exploiting the centralized training phase. During training SAD allows other agents to not only observe the (exploratory) action chosen, but agents instead also observe the greedy action of their team mates. By combining this simple intuition with best practices for multi-agent learning, SAD establishes a new SOTA for learning methods for 2-5 players on the self-play part of the Hanabi challenge. Our ablations show the contributions of SAD compared with the best practice components. All of our code and trained agents are available at https://github.com/facebookresearch/Hanabi\_SAD.%
+    }
+    \verb{eprint}
+    \verb 1912.02288
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Simplified {{Action Decoder}} for {{Deep Multi-Agent Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1912.02288
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/ABJA9LY4/Hu and Foerster - 2021 - Simp
+    \verb lified Action Decoder for Deep Multi-Agent Rei.pdf
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{12}
+    \field{month}{05}
+    \field{year}{2021}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{huOffBeliefLearning2021}{online}{}
+    \name{author}{7}{}{%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hengyuan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lerer},
+         familyi={L\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=CB}{%
+         family={Cui},
+         familyi={C\bibinitperiod},
+         given={Brandon},
+         giveni={B\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Wu},
+         familyi={W\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=PL}{%
+         family={Pineda},
+         familyi={P\bibinitperiod},
+         given={Luis},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=BN}{%
+         family={Brown},
+         familyi={B\bibinitperiod},
+         given={Noam},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=FJ}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning}
+    \strng{namehash}{HH+1}
+    \strng{fullhash}{HHLACBWDPLBNFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{abstract}{%
+    The standard problem setting in Dec-POMDPs is self-play, where the goal is to find a set of policies that play optimally together. Policies learned through self-play may adopt arbitrary conventions and implicitly rely on multi-step reasoning based on fragile assumptions about other agents' actions and thus fail when paired with humans or independently trained agents at test time. To address this, we present off-belief learning (OBL). At each timestep OBL agents follow a policy \$\textbackslash pi\_1\$ that is optimized assuming past actions were taken by a given, fixed policy (\$\textbackslash pi\_0\$), but assuming that future actions will be taken by \$\textbackslash pi\_1\$. When \$\textbackslash pi\_0\$ is uniform random, OBL converges to an optimal policy that does not rely on inferences based on other agents' behavior (an optimal grounded policy). OBL can be iterated in a hierarchy, where the optimal policy from one level becomes the input to the next, thereby introducing multi-level cognitive reasoning in a controlled manner. Unlike existing approaches, which may converge to any equilibrium policy, OBL converges to a unique policy, making it suitable for zero-shot coordination (ZSC). OBL can be scaled to high-dimensional settings with a fictitious transition mechanism and shows strong performance in both a toy-setting and the benchmark human-AI \& ZSC problem Hanabi.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2103.04000
+    \endverb
+    \verb{eprint}
+    \verb 2103.04000
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Off-{{Belief Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2103.04000
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/J4F5VIZZ/Hu et al. - 2021 - Off-Belief
+    \verb  Learning.pdf;/home/skywalker/Zotero/storage/8XGC5TKR/2103.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{17}
+    \field{month}{08}
+    \field{year}{2021}
+    \field{urlday}{16}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{huOtherPlayZeroShotCoordination}{inproceedings}{}
+    \name{author}{4}{}{%
+      {{hash=HH}{%
+         family={Hu},
+         familyi={H\bibinitperiod},
+         given={Hengyuan},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lerer},
+         familyi={L\bibinitperiod},
+         given={Adam},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=PA}{%
+         family={Peysakhovich},
+         familyi={P\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=FJ}{%
+         family={Foerster},
+         familyi={F\bibinitperiod},
+         given={Jakob},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{HH+1}
+    \strng{fullhash}{HHLAPAFJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{H}
+    \field{sortinithash}{H}
+    \field{booktitle}{International {{Conference}} on {{Machine Learning}}}
+    \field{pages}{4399\bibrangedash 4410}
+    \field{title}{“{{Other-Play}}” for {{Zero-Shot Coordination}}}
+    \verb{url}
+    \verb http://proceedings.mlr.press/v119/hu20a.html
+    \endverb
+    \field{year}{2020}
+    \field{urlday}{24}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{kapturowskiRecurrentExperienceReplay2018}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=KS}{%
+         family={Kapturowski},
+         familyi={K\bibinitperiod},
+         given={Steven},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=OG}{%
+         family={Ostrovski},
+         familyi={O\bibinitperiod},
+         given={Georg},
+         giveni={G\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Quan},
+         familyi={Q\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=MR}{%
+         family={Munos},
+         familyi={M\bibinitperiod},
+         given={Remi},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=DW}{%
+         family={Dabney},
+         familyi={D\bibinitperiod},
+         given={Will},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KS+1}
+    \strng{fullhash}{KSOGQJMRDW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{abstract}{%
+    Building on the recent successes of distributed training of RL agents, in this paper we investigate the training of RNN-based RL agents from distributed prioritized experience replay. We study the effects of parameter lag resulting in representational drift and recurrent state staleness and empirically derive an improved training strategy. Using a single network architecture and fixed set of hyper-parameters, the resulting agent, Recurrent Replay Distributed DQN, quadruples the previous state of the art on Atari-57, and matches the state of the art on DMLab-30. It is the first agent to exceed human-level performance in 52 of the 57 Atari games.%
+    }
+    \field{eventtitle}{International {{Conference}} on {{Learning Representations}}}
+    \field{title}{Recurrent {{Experience Replay}} in {{Distributed Reinforcement Learning}}}
+    \verb{url}
+    \verb https://openreview.net/forum?id=r1lyTjAqYX
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/BEHHV5S6/Kapturowski et al. - 2018 - R
+    \verb ecurrent Experience Replay in Distributed Reinforcement Learning.pdf
+    \endverb
+    \field{day}{27}
+    \field{month}{09}
+    \field{year}{2018}
+    \field{urlday}{29}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{liACECooperativeMultiagent2022}{online}{}
+    \name{author}{8}{}{%
+      {{hash=LC}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Chuming},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=LJ}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Jie},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Yinmin},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=WY}{%
+         family={Wei},
+         familyi={W\bibinitperiod},
+         given={Yuhong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=NY}{%
+         family={Niu},
+         familyi={N\bibinitperiod},
+         given={Yazhe},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yang},
+         familyi={Y\bibinitperiod},
+         given={Yaodong},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LY}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Yu},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=OW}{%
+         family={Ouyang},
+         familyi={O\bibinitperiod},
+         given={Wanli},
+         giveni={W\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning,Computer Science - Multiagent Systems}
+    \strng{namehash}{LC+1}
+    \strng{fullhash}{LCLJZYWYNYYYLYOW1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    Multi-agent reinforcement learning (MARL) suffers from the non-stationarity problem, which is the ever-changing targets at every iteration when multiple agents update their policies at the same time. Starting from first principle, in this paper, we manage to solve the non-stationarity problem by proposing bidirectional action-dependent Q-learning (ACE). Central to the development of ACE is the sequential decision-making process wherein only one agent is allowed to take action at one time. Within this process, each agent maximizes its value function given the actions taken by the preceding agents at the inference stage. In the learning phase, each agent minimizes the TD error that is dependent on how the subsequent agents have reacted to their chosen action. Given the design of bidirectional dependency, ACE effectively turns a multiagent MDP into a single-agent MDP. We implement the ACE framework by identifying the proper network representation to formulate the action dependency, so that the sequential decision process is computed implicitly in one forward pass. To validate ACE, we compare it with strong baselines on two MARL benchmarks. Empirical experiments demonstrate that ACE outperforms the state-of-the-art algorithms on Google Research Football and StarCraft Multi-Agent Challenge by a large margin. In particular, on SMAC tasks, ACE achieves 100\% success rate on almost all the hard and super-hard maps. We further study extensive research problems regarding ACE, including extension, generalization, and practicability. Code is made available to facilitate further research.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2211.16068
+    \endverb
+    \verb{eprint}
+    \verb 2211.16068
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{shorttitle}{{{ACE}}}
+    \field{title}{{{ACE}}: {{Cooperative Multi-agent Q-learning}} with {{Bidirectional Action-Dependency}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2211.16068
+    \endverb
+    \field{version}{2}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/CM36LFJF/Li et al. - 2022 - ACE Cooper
+    \verb ative Multi-agent Q-learning with Bidir.pdf;/home/skywalker/Zotero/st
+    \verb orage/JT7QHAJF/2211.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{02}
+    \field{month}{12}
+    \field{year}{2022}
+    \field{urlday}{02}
+    \field{urlmonth}{06}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{lucasAnyPlayIntrinsicAugmentation2022}{online}{}
+    \name{author}{2}{}{%
+      {{hash=LK}{%
+         family={Lucas},
+         familyi={L\bibinitperiod},
+         given={Keane},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=ARE}{%
+         family={Allen},
+         familyi={A\bibinitperiod},
+         given={Ross\bibnamedelima E.},
+         giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Multiagent Systems,I.2.11}
+    \strng{namehash}{LKARE1}
+    \strng{fullhash}{LKARE1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{L}
+    \field{sortinithash}{L}
+    \field{abstract}{%
+    Cooperative artificial intelligence with human or superhuman proficiency in collaborative tasks stands at the frontier of machine learning research. Prior work has tended to evaluate cooperative AI performance under the restrictive paradigms of self-play (teams composed of agents trained together) and cross-play (teams of agents trained independently but using the same algorithm). Recent work has indicated that AI optimized for these narrow settings may make for undesirable collaborators in the real-world. We formalize an alternative criteria for evaluating cooperative AI, referred to as inter-algorithm cross-play, where agents are evaluated on teaming performance with all other agents within an experiment pool with no assumption of algorithmic similarities between agents. We show that existing state-of-the-art cooperative AI algorithms, such as Other-Play and Off-Belief Learning, under-perform in this paradigm. We propose the Any-Play learning augmentation -- a multi-agent extension of diversity-based intrinsic rewards for zero-shot coordination (ZSC) -- for generalizing self-play-based algorithms to the inter-algorithm cross-play setting. We apply the Any-Play learning augmentation to the Simplified Action Decoder (SAD) and demonstrate state-of-the-art performance in the collaborative card game Hanabi.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2201.12436
+    \endverb
+    \verb{eprint}
+    \verb 2201.12436
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{shorttitle}{Any-{{Play}}}
+    \field{title}{Any-{{Play}}: {{An Intrinsic Augmentation}} for {{Zero-Shot Coordination}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2201.12436
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/SPTN7U5L/Lucas and Allen - 2022 - Any-
+    \verb Play An Intrinsic Augmentation for Zero-Shot .pdf;/home/skywalker/Zot
+    \verb ero/storage/VZ8Q8XXS/2201.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{28}
+    \field{month}{01}
+    \field{year}{2022}
+    \field{urlday}{17}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{mnihPlayingAtariDeep2013}{online}{}
+    \name{author}{7}{}{%
+      {{hash=MV}{%
+         family={Mnih},
+         familyi={M\bibinitperiod},
+         given={Volodymyr},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Kavukcuoglu},
+         familyi={K\bibinitperiod},
+         given={Koray},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Silver},
+         familyi={S\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=GA}{%
+         family={Graves},
+         familyi={G\bibinitperiod},
+         given={Alex},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=AI}{%
+         family={Antonoglou},
+         familyi={A\bibinitperiod},
+         given={Ioannis},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=WD}{%
+         family={Wierstra},
+         familyi={W\bibinitperiod},
+         given={Daan},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=RM}{%
+         family={Riedmiller},
+         familyi={R\bibinitperiod},
+         given={Martin},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning}
+    \strng{namehash}{MV+1}
+    \strng{fullhash}{MVKKSDGAAIWDRM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{M}
+    \field{sortinithash}{M}
+    \field{abstract}{%
+    We present the first deep learning model to successfully learn control policies directly from high-dimensional sensory input using reinforcement learning. The model is a convolutional neural network, trained with a variant of Q-learning, whose input is raw pixels and whose output is a value function estimating future rewards. We apply our method to seven Atari 2600 games from the Arcade Learning Environment, with no adjustment of the architecture or learning algorithm. We find that it outperforms all previous approaches on six of the games and surpasses a human expert on three of them.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1312.5602
+    \endverb
+    \verb{eprint}
+    \verb 1312.5602
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Playing {{Atari}} with {{Deep Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1312.5602
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/B2NBDQGY/Mnih et al. - 2013 - Playing
+    \verb Atari with Deep Reinforcement Learning.pdf;/home/skywalker/Zotero/sto
+    \verb rage/NXM7T5AV/1312.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{19}
+    \field{month}{12}
+    \field{year}{2013}
+    \field{urlday}{24}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{nekoeiFewshotCoordinationRevisiting2023}{inproceedings}{}
+    \name{author}{5}{}{%
+      {{hash=NH}{%
+         family={Nekoei},
+         familyi={N\bibinitperiod},
+         given={Hadi},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=ZX}{%
+         family={Zhao},
+         familyi={Z\bibinitperiod},
+         given={Xutong},
+         giveni={X\bibinitperiod},
+      }}%
+      {{hash=RJ}{%
+         family={Rajendran},
+         familyi={R\bibinitperiod},
+         given={Janarthanan},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Liu},
+         familyi={L\bibinitperiod},
+         given={Miao},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=CS}{%
+         family={Chandar},
+         familyi={C\bibinitperiod},
+         given={Sarath},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{NH+1}
+    \strng{fullhash}{NHZXRJLMCS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{N}
+    \field{sortinithash}{N}
+    \field{abstract}{%
+    Cooperative Multi-agent Reinforcement Learning (MARL) algorithms with Zero-Shot Coordination (ZSC) have gained significant attention in recent years. ZSC refers to the ability of agents to coordinate with independently trained agents. While ZSC is crucial for cooperative MARL agents, it might not be possible for complex tasks and changing environments. Agents also need to adapt and improve their performance with minimal interaction with other agents. In this work, we show empirically that state-of-the-art ZSC algorithms have poor performance when paired with agents trained with different methods, and they require millions of samples to adapt to these new partners. To investigate this issue, we formally defined a framework based on a popular cooperative multi-agent game called Hanabi to evaluate the adaptability of MARL methods. In particular, we created a diverse set of pre-trained agents and defined a new metric called adaptation regret that measures the agent’s ability to efficiently adapt and improve its coordination performance when paired with some held-out pool of partners on top of its ZSC performance. After evaluating several SOTA algorithms using our framework, our experiments reveal that naive Independent Q-Learning (IQL) agents in most cases adapt as quickly as the SOTA ZSC algorithm Off-Belief Learning (OBL). This finding raises an interesting research question: How to design MARL algorithms with high ZSC performance and capability of fast adaptation to unseen partners. As a first step, we studied the role of different hyper-parameters and design choices on the adaptability of current MARL algorithms. Our experiments show that two categories of hyper-parameters controlling the data diversity and optimization process have a significant impact on the adaptability of Hanabi agents. We hope this initial analysis will inspire more work on designing both general and adaptive MARL algorithms.%
+    }
+    \field{booktitle}{Proceedings of {{The}} 2nd {{Conference}} on {{Lifelong Learning Agents}}}
+    \field{eventtitle}{Conference on {{Lifelong Learning Agents}}}
+    \field{issn}{2640-3498}
+    \field{pages}{861\bibrangedash 877}
+    \field{shorttitle}{Towards {{Few-shot Coordination}}}
+    \field{title}{Towards {{Few-shot Coordination}}: {{Revisiting Ad-hoc Teamplay Challenge In}} the {{Game}} of {{Hanabi}}}
+    \verb{url}
+    \verb https://proceedings.mlr.press/v232/nekoei23b.html
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/KH5THJFR/Nekoei et al. - 2023 - Toward
+    \verb s Few-shot Coordination Revisiting Ad-hoc T.pdf
+    \endverb
+    \field{day}{20}
+    \field{month}{11}
+    \field{year}{2023}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{oliehoekConciseIntroductionDecentralized2016}{book}{}
+    \name{author}{2}{}{%
+      {{hash=OFA}{%
+         family={Oliehoek},
+         familyi={O\bibinitperiod},
+         given={Frans\bibnamedelima A.},
+         giveni={F\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=AC}{%
+         family={Amato},
+         familyi={A\bibinitperiod},
+         given={Christopher},
+         giveni={C\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Publishing Company, Incorporated}%
+    }
+    \strng{namehash}{OFAAC1}
+    \strng{fullhash}{OFAAC1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{abstract}{%
+    This book introduces multiagent planning under uncertainty as formalized by decentralized partially observable Markov decision processes (Dec-POMDPs). The intended audience is researchers and graduate students working in the fields of artificial intelligence related to sequential decision making: reinforcement learning, decision-theoretic planning for single agents, classical multiagent planning, decentralized control, and operations research.%
+    }
+    \field{edition}{1}
+    \field{isbn}{978-3-319-28927-4}
+    \field{pagetotal}{134}
+    \field{title}{A {{Concise Introduction}} to {{Decentralized POMDPs}}}
+    \field{month}{05}
+    \field{year}{2016}
+  \endentry
+
+  \entry{osawaSolvingHanabiEstimating2015}{inproceedings}{}
+    \name{author}{1}{}{%
+      {{hash=OH}{%
+         family={Osawa},
+         familyi={O\bibinitperiod},
+         given={Hirotaka},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {AI Access Foundation}%
+    }
+    \strng{namehash}{OH1}
+    \strng{fullhash}{OH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{O}
+    \field{sortinithash}{O}
+    \field{booktitle}{Computer {{Poker}} and {{Imperfect Information}} - {{Papers Presented}} at the 29th {{AAAI Conference}} on {{Artificial Intelligence}}, {{Technical Report}}}
+    \field{eventtitle}{29th {{AAAI Conference}} on {{Artificial Intelligence}}, {{AAAI}} 2015}
+    \field{pages}{37\bibrangedash 43}
+    \field{shorttitle}{Solving Hanabi}
+    \field{title}{Solving Hanabi: {{Estimating}} Hands by Opponent's Actions in Cooperative Game with Incomplete Information}
+    \verb{url}
+    \verb https://keio.elsevierpure.com/en/publications/solving-hanabi-estimati
+    \verb ng-hands-by-opponents-actions-in-cooperati
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/4RSY2AZJ/solving-hanabi-estimating-han
+    \verb ds-by-opponents-actions-in-cooperati.html
+    \endverb
+    \field{year}{2015}
+    \field{urlday}{14}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{PettingZooDocumentation}{online}{}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{P}
+    \field{sortinithash}{P}
+    \field{title}{{{PettingZoo Documentation}}}
+    \verb{url}
+    \verb https://pettingzoo.farama.org/index.html
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/KH4YEIG4/pettingzoo.farama.org.html
+    \endverb
+    \field{urlday}{29}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{schaulPrioritizedExperienceReplay2016}{online}{}
+    \name{author}{4}{}{%
+      {{hash=ST}{%
+         family={Schaul},
+         familyi={S\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=QJ}{%
+         family={Quan},
+         familyi={Q\bibinitperiod},
+         given={John},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=AI}{%
+         family={Antonoglou},
+         familyi={A\bibinitperiod},
+         given={Ioannis},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Silver},
+         familyi={S\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Machine Learning}
+    \strng{namehash}{ST+1}
+    \strng{fullhash}{STQJAISD1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    Experience replay lets online reinforcement learning agents remember and reuse experiences from the past. In prior work, experience transitions were uniformly sampled from a replay memory. However, this approach simply replays transitions at the same frequency that they were originally experienced, regardless of their significance. In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently. We use prioritized experience replay in Deep Q-Networks (DQN), a reinforcement learning algorithm that achieved human-level performance across many Atari games. DQN with prioritized experience replay achieves a new state-of-the-art, outperforming DQN with uniform replay on 41 out of 49 games.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1511.05952
+    \endverb
+    \verb{eprint}
+    \verb 1511.05952
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Prioritized {{Experience Replay}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1511.05952
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/BPDPFP7U/Schaul et al. - 2016 - Priori
+    \verb tized Experience Replay.pdf;/home/skywalker/Zotero/storage/BPXZIX33/1
+    \verb 511.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{25}
+    \field{month}{02}
+    \field{year}{2016}
+    \field{urlday}{28}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{sidjiHiddenRulesHanabi2023}{inproceedings}{}
+    \name{author}{3}{}{%
+      {{hash=SM}{%
+         family={Sidji},
+         familyi={S\bibinitperiod},
+         given={Matthew},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SW}{%
+         family={Smith},
+         familyi={S\bibinitperiod},
+         given={Wally},
+         giveni={W\bibinitperiod},
+      }}%
+      {{hash=RMJ}{%
+         family={Rogerson},
+         familyi={R\bibinitperiod},
+         given={Melissa\bibnamedelima J.},
+         giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Association for Computing Machinery}%
+    }
+    \strng{namehash}{SMSWRMJ1}
+    \strng{fullhash}{SMSWRMJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{shorttitle}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    Games that feature multiple players, limited communication, and partial information are particularly challenging for AI agents. In the cooperative card game Hanabi, which possesses all of these attributes, AI agents fail to achieve scores comparable to even first-time human players. Through an observational study of three mixed-skill Hanabi play groups, we identify the techniques used by humans that help to explain their superior performance compared to AI. These concern physical artefact manipulation, coordination play, role establishment, and continual rule negotiation. Our findings extend previous accounts of human performance in Hanabi, which are purely in terms of theory-of-mind reasoning, by revealing more precisely how this form of collective decision-making is enacted in skilled human play. Our interpretation points to a gap in the current capabilities of AI agents to perform cooperative tasks.%
+    }
+    \field{booktitle}{Proceedings of the 2023 {{CHI Conference}} on {{Human Factors}} in {{Computing Systems}}}
+    \verb{doi}
+    \verb 10.1145/3544548.3581550
+    \endverb
+    \field{isbn}{978-1-4503-9421-5}
+    \field{pages}{1\bibrangedash 16}
+    \field{series}{{{CHI}} '23}
+    \field{shorttitle}{The {{Hidden Rules}} of {{Hanabi}}}
+    \field{title}{The {{Hidden Rules}} of {{Hanabi}}: {{How Humans Outperform AI Agents}}}
+    \verb{url}
+    \verb https://doi.org/10.1145/3544548.3581550
+    \endverb
+    \list{location}{1}{%
+      {New York, NY, USA}%
+    }
+    \field{day}{19}
+    \field{month}{04}
+    \field{year}{2023}
+    \field{urlday}{29}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{siuEvaluationHumanAITeams2021}{inproceedings}{}
+    \name{author}{8}{}{%
+      {{hash=SHC}{%
+         family={Siu},
+         familyi={S\bibinitperiod},
+         given={Ho\bibnamedelima Chit},
+         giveni={H\bibinitperiod\bibinitdelim C\bibinitperiod},
+      }}%
+      {{hash=PJ}{%
+         family={Peña},
+         familyi={P\bibinitperiod},
+         given={Jaime},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=CE}{%
+         family={Chen},
+         familyi={C\bibinitperiod},
+         given={Edenna},
+         giveni={E\bibinitperiod},
+      }}%
+      {{hash=ZY}{%
+         family={Zhou},
+         familyi={Z\bibinitperiod},
+         given={Yutai},
+         giveni={Y\bibinitperiod},
+      }}%
+      {{hash=LV}{%
+         family={Lopez},
+         familyi={L\bibinitperiod},
+         given={Victor},
+         giveni={V\bibinitperiod},
+      }}%
+      {{hash=PK}{%
+         family={Palko},
+         familyi={P\bibinitperiod},
+         given={Kyle},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=CK}{%
+         family={Chang},
+         familyi={C\bibinitperiod},
+         given={Kimberlee},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=AR}{%
+         family={Allen},
+         familyi={A\bibinitperiod},
+         given={Ross},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Curran Associates, Inc.}%
+    }
+    \strng{namehash}{SHC+1}
+    \strng{fullhash}{SHCPJCEZYLVPKCKAR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    Deep reinforcement learning has generated superhuman AI in competitive games such as Go and StarCraft. Can similar learning techniques create a superior AI teammate for human-machine collaborative games? Will humans prefer AI teammates that improve objective team performance or those that improve subjective metrics of trust? In this study, we perform a single-blind evaluation of teams of humans and AI agents in the cooperative card game Hanabi, with both rule-based and learning-based agents. In addition to the game score, used as an objective metric of the human-AI team performance, we also quantify subjective measures of the human's perceived performance, teamwork, interpretability, trust, and overall preference of AI teammate. We find that humans have a clear preference toward a rule-based AI teammate (SmartBot) over a state-of-the-art learning-based AI teammate (Other-Play) across nearly all subjective metrics, and generally view the learning-based agent negatively, despite no statistical difference in the game score. This result has implications for future AI design and reinforcement learning benchmarking, highlighting the need to incorporate subjective metrics of human-AI teaming rather than a singular focus on objective task performance.%
+    }
+    \field{booktitle}{Advances in {{Neural Information Processing Systems}}}
+    \field{pages}{16183\bibrangedash 16195}
+    \field{title}{Evaluation of {{Human-AI Teams}} for {{Learned}} and {{Rule-Based Agents}} in {{Hanabi}}}
+    \verb{url}
+    \verb https://proceedings.neurips.cc/paper/2021/hash/86e8f7ab32cfd12577bc26
+    \verb 19bc635690-Abstract.html
+    \endverb
+    \field{volume}{34}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/HQBLGM2F/Siu et al. - 2021 - Evaluatio
+    \verb n of Human-AI Teams for Learned and Rule-.pdf
+    \endverb
+    \field{year}{2021}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{vezhnevetsFeUdalNetworksHierarchical2017}{online}{}
+    \name{author}{7}{}{%
+      {{hash=VAS}{%
+         family={Vezhnevets},
+         familyi={V\bibinitperiod},
+         given={Alexander\bibnamedelima Sasha},
+         giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod},
+      }}%
+      {{hash=OS}{%
+         family={Osindero},
+         familyi={O\bibinitperiod},
+         given={Simon},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Schaul},
+         familyi={S\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HN}{%
+         family={Heess},
+         familyi={H\bibinitperiod},
+         given={Nicolas},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=JM}{%
+         family={Jaderberg},
+         familyi={J\bibinitperiod},
+         given={Max},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=SD}{%
+         family={Silver},
+         familyi={S\bibinitperiod},
+         given={David},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=KK}{%
+         family={Kavukcuoglu},
+         familyi={K\bibinitperiod},
+         given={Koray},
+         giveni={K\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence}
+    \strng{namehash}{VAS+1}
+    \strng{fullhash}{VASOSSTHNJMSDKK1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{V}
+    \field{sortinithash}{V}
+    \field{abstract}{%
+    We introduce FeUdal Networks (FuNs): a novel architecture for hierarchical reinforcement learning. Our approach is inspired by the feudal reinforcement learning proposal of Dayan and Hinton, and gains power and efficacy by decoupling end-to-end learning across multiple levels -- allowing it to utilise different resolutions of time. Our framework employs a Manager module and a Worker module. The Manager operates at a lower temporal resolution and sets abstract goals which are conveyed to and enacted by the Worker. The Worker generates primitive actions at every tick of the environment. The decoupled structure of FuN conveys several benefits -- in addition to facilitating very long timescale credit assignment it also encourages the emergence of sub-policies associated with different goals set by the Manager. These properties allow FuN to dramatically outperform a strong baseline agent on tasks that involve long-term credit assignment or memorisation. We demonstrate the performance of our proposed system on a range of tasks from the ATARI suite and also from a 3D DeepMind Lab environment.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1703.01161
+    \endverb
+    \verb{eprint}
+    \verb 1703.01161
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{{{FeUdal Networks}} for {{Hierarchical Reinforcement Learning}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1703.01161
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/8SBEYECJ/Vezhnevets et al. - 2017 - Fe
+    \verb Udal Networks for Hierarchical Reinforcement Learning.pdf;/home/skywa
+    \verb lker/Zotero/storage/9D2FV5NA/1703.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{day}{06}
+    \field{month}{03}
+    \field{year}{2017}
+    \field{urlday}{25}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{walton-riversEvaluatingModellingHanabiPlaying2017}{online}{}
+    \name{author}{5}{}{%
+      {{hash=WRJ}{%
+         family={Walton-Rivers},
+         familyi={W\bibinithyphendelim R\bibinitperiod},
+         given={Joseph},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=WPR}{%
+         family={Williams},
+         familyi={W\bibinitperiod},
+         given={Piers\bibnamedelima R.},
+         giveni={P\bibinitperiod\bibinitdelim R\bibinitperiod},
+      }}%
+      {{hash=BR}{%
+         family={Bartle},
+         familyi={B\bibinitperiod},
+         given={Richard},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=PLD}{%
+         family={Perez-Liebana},
+         familyi={P\bibinithyphendelim L\bibinitperiod},
+         given={Diego},
+         giveni={D\bibinitperiod},
+      }}%
+      {{hash=LSM}{%
+         family={Lucas},
+         familyi={L\bibinitperiod},
+         given={Simon\bibnamedelima M.},
+         giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence}
+    \strng{namehash}{WRJ+1}
+    \strng{fullhash}{WRJWPRBRPLDLSM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{abstract}{%
+    Agent modelling involves considering how other agents will behave, in order to influence your own actions. In this paper, we explore the use of agent modelling in the hidden-information, collaborative card game Hanabi. We implement a number of rule-based agents, both from the literature and of our own devising, in addition to an Information Set Monte Carlo Tree Search (IS-MCTS) agent. We observe poor results from IS-MCTS, so construct a new, predictor version that uses a model of the agents with which it is paired. We observe a significant improvement in game-playing strength from this agent in comparison to IS-MCTS, resulting from its consideration of what the other agents in a game would do. In addition, we create a flawed rule-based agent to highlight the predictor's capabilities with such an agent.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.1704.07069
+    \endverb
+    \verb{eprint}
+    \verb 1704.07069
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{Evaluating and {{Modelling Hanabi-Playing Agents}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/1704.07069
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/G6HGBY7Y/Walton-Rivers et al. - 2017 -
+    \verb  Evaluating and Modelling Hanabi-Playing Agents.pdf;/home/skywalker/Z
+    \verb otero/storage/L3D2LAS3/1704.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{24}
+    \field{month}{04}
+    \field{year}{2017}
+    \field{urlday}{16}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{wangDuelingNetworkArchitectures2016}{inproceedings}{}
+    \name{author}{6}{}{%
+      {{hash=WZ}{%
+         family={Wang},
+         familyi={W\bibinitperiod},
+         given={Ziyu},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=ST}{%
+         family={Schaul},
+         familyi={S\bibinitperiod},
+         given={Tom},
+         giveni={T\bibinitperiod},
+      }}%
+      {{hash=HM}{%
+         family={Hessel},
+         familyi={H\bibinitperiod},
+         given={Matteo},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=HH}{%
+         family={Hasselt},
+         familyi={H\bibinitperiod},
+         given={Hado},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=LM}{%
+         family={Lanctot},
+         familyi={L\bibinitperiod},
+         given={Marc},
+         giveni={M\bibinitperiod},
+      }}%
+      {{hash=FN}{%
+         family={Freitas},
+         familyi={F\bibinitperiod},
+         given={Nando},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {PMLR}%
+    }
+    \strng{namehash}{WZ+1}
+    \strng{fullhash}{WZSTHMHHLMFN1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{W}
+    \field{sortinithash}{W}
+    \field{abstract}{%
+    In recent years there have been many successes of using deep representations in reinforcement learning. Still, many of these applications use conventional architectures, such as convolutional networks, LSTMs, or auto-encoders. In this paper, we present a new neural network architecture for model-free reinforcement learning. Our dueling network represents two separate estimators: one for the state value function and one for the state-dependent action advantage function. The main benefit of this factoring is to generalize learning across actions without imposing any change to the underlying reinforcement learning algorithm. Our results show that this architecture leads to better policy evaluation in the presence of many similar-valued actions. Moreover, the dueling architecture enables our RL agent to outperform the state-of-the-art on the Atari 2600 domain.%
+    }
+    \field{booktitle}{Proceedings of {{The}} 33rd {{International Conference}} on {{Machine Learning}}}
+    \field{eventtitle}{International {{Conference}} on {{Machine Learning}}}
+    \field{issn}{1938-7228}
+    \field{pages}{1995\bibrangedash 2003}
+    \field{title}{Dueling {{Network Architectures}} for {{Deep Reinforcement Learning}}}
+    \verb{url}
+    \verb https://proceedings.mlr.press/v48/wangf16.html
+    \endverb
+    \field{langid}{english}
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/G8SKWKI4/Wang et al. - 2016 - Dueling
+    \verb Network Architectures for Deep Reinforcement Learning.pdf
+    \endverb
+    \field{day}{11}
+    \field{month}{06}
+    \field{year}{2016}
+    \field{urlday}{28}
+    \field{urlmonth}{10}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{yuanSurveyProgressCooperative2023}{online}{}
+    \name{author}{5}{}{%
+      {{hash=YL}{%
+         family={Yuan},
+         familyi={Y\bibinitperiod},
+         given={Lei},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=ZZ}{%
+         family={Zhang},
+         familyi={Z\bibinitperiod},
+         given={Ziqian},
+         giveni={Z\bibinitperiod},
+      }}%
+      {{hash=LL}{%
+         family={Li},
+         familyi={L\bibinitperiod},
+         given={Lihe},
+         giveni={L\bibinitperiod},
+      }}%
+      {{hash=GC}{%
+         family={Guan},
+         familyi={G\bibinitperiod},
+         given={Cong},
+         giveni={C\bibinitperiod},
+      }}%
+      {{hash=YY}{%
+         family={Yu},
+         familyi={Y\bibinitperiod},
+         given={Yang},
+         giveni={Y\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Multiagent Systems}
+    \strng{namehash}{YL+1}
+    \strng{fullhash}{YLZZLLGCYY1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Y}
+    \field{sortinithash}{Y}
+    \field{abstract}{%
+    Multi-agent Reinforcement Learning (MARL) has gained wide attention in recent years and has made progress in various fields. Specifically, cooperative MARL focuses on training a team of agents to cooperatively achieve tasks that are difficult for a single agent to handle. It has shown great potential in applications such as path planning, autonomous driving, active voltage control, and dynamic algorithm configuration. One of the research focuses in the field of cooperative MARL is how to improve the coordination efficiency of the system, while research work has mainly been conducted in simple, static, and closed environment settings. To promote the application of artificial intelligence in real-world, some research has begun to explore multi-agent coordination in open environments. These works have made progress in exploring and researching the environments where important factors might change. However, the mainstream work still lacks a comprehensive review of the research direction. In this paper, starting from the concept of reinforcement learning, we subsequently introduce multi-agent systems (MAS), cooperative MARL, typical methods, and test environments. Then, we summarize the research work of cooperative MARL from closed to open environments, extract multiple research directions, and introduce typical works. Finally, we summarize the strengths and weaknesses of the current research, and look forward to the future development direction and research problems in cooperative MARL in open environments.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2312.01058
+    \endverb
+    \verb{eprint}
+    \verb 2312.01058
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{A {{Survey}} of {{Progress}} on {{Cooperative Multi-agent Reinforcement Learning}} in {{Open Environment}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2312.01058
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/6MFCK54D/Yuan et al. - 2023 - A Survey
+    \verb  of Progress on Cooperative Multi-agent Re.pdf;/home/skywalker/Zotero
+    \verb /storage/8MIXYVR7/2312.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs}
+    \field{day}{02}
+    \field{month}{12}
+    \field{year}{2023}
+    \field{urlday}{09}
+    \field{urlmonth}{05}
+    \field{urlyear}{2024}
+  \endentry
+
+  \entry{zandOntheflyStrategyAdaptation2022}{online}{}
+    \name{author}{3}{}{%
+      {{hash=ZJ}{%
+         family={Zand},
+         familyi={Z\bibinitperiod},
+         given={Jaleh},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=PHJ}{%
+         family={Parker-Holder},
+         familyi={P\bibinithyphendelim H\bibinitperiod},
+         given={Jack},
+         giveni={J\bibinitperiod},
+      }}%
+      {{hash=RSJ}{%
+         family={Roberts},
+         familyi={R\bibinitperiod},
+         given={Stephen\bibnamedelima J.},
+         giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \keyw{Computer Science - Artificial Intelligence,Computer Science - Computer Science and Game Theory,Computer Science - Machine Learning,Statistics - Machine Learning}
+    \strng{namehash}{ZJPHJRSJ1}
+    \strng{fullhash}{ZJPHJRSJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{sortinit}{Z}
+    \field{sortinithash}{Z}
+    \field{abstract}{%
+    Training agents in cooperative settings offers the promise of AI agents able to interact effectively with humans (and other agents) in the real world. Multi-agent reinforcement learning (MARL) has the potential to achieve this goal, demonstrating success in a series of challenging problems. However, whilst these advances are significant, the vast majority of focus has been on the self-play paradigm. This often results in a coordination problem, caused by agents learning to make use of arbitrary conventions when playing with themselves. This means that even the strongest self-play agents may have very low cross-play with other agents, including other initializations of the same algorithm. In this paper we propose to solve this problem by adapting agent strategies on the fly, using a posterior belief over the other agents' strategy. Concretely, we consider the problem of selecting a strategy from a finite set of previously trained agents, to play with an unknown partner. We propose an extension of the classic statistical technique, Gibbs sampling, to update beliefs about other agents and obtain close to optimal ad-hoc performance. Despite its simplicity, our method is able to achieve strong cross-play with unseen partners in the challenging card game of Hanabi, achieving successful ad-hoc coordination without knowledge of the partner's strategy a priori.%
+    }
+    \verb{doi}
+    \verb 10.48550/arXiv.2203.08015
+    \endverb
+    \verb{eprint}
+    \verb 2203.08015
+    \endverb
+    \field{pubstate}{prepublished}
+    \field{title}{On-the-Fly {{Strategy Adaptation}} for Ad-Hoc {{Agent Coordination}}}
+    \verb{url}
+    \verb http://arxiv.org/abs/2203.08015
+    \endverb
+    \verb{file}
+    \verb /home/skywalker/Zotero/storage/VGTTIAK9/Zand et al. - 2022 - On-the-f
+    \verb ly Strategy Adaptation for ad-hoc Agent Co.pdf;/home/skywalker/Zotero
+    \verb /storage/U4LRCLU3/2203.html
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{cs, stat}
+    \field{day}{07}
+    \field{month}{03}
+    \field{year}{2022}
+    \field{urlday}{16}
+    \field{urlmonth}{04}
+    \field{urlyear}{2024}
+  \endentry
+\enddatalist
+\endinput

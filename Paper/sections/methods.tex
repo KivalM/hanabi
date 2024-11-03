@@ -1,0 +1,22 @@
+\section{Methods}
+For this study, we train 7 agents in the Hanabi environment using the PettingZoo wrapper for the Hanabi Learning Environment (HLE). We evaluate the agents in a two-player self-play setting and an AD-Hoc Teamplay setting. We train the agents to understand the impact of the various DQN improvements on the agents' performance in the game in terms of sample efficiency, effective exploration, and generalization to unseen partners.
+\subsection*{Experimental Setup}
+\subsubsection*{Environment}
+The choice of Hanabi as the testbed for evaluating multi-agent reinforcement learning algorithms is motivated by its complexity and the challenges it presents for learning agents. The experiments will be conducted using a PettingZoo\cite{PettingZooDocumentation} Wrapper based on the Hanabi Learning Environment (HLE)\cite{GoogledeepmindHanabilearningenvironment2024} developed by \textcite{bardHanabiChallengeNew2020a}.
+
+PettingZoo provides a standardized interface for multi-agent reinforcement learning environments. Due to Hanabi's complexity, the experiments will focus on a smaller version of the game, allowing for faster training and evaluation of the agents. We used the 'Hanabi-Small' environment by \textcite{bardHanabiChallengeNew2020a}, which is a two-player version of Hanabi, where each player has a hand of 2 cards, and the number of colours is reduced to 2. The maximum score in this environment is 10, and the game ends when the deck is empty or the players have made one mistake.
+
+\subsubsection*{Agents}
+As a baseline for the study, we consider simple Deep Q-Networks (DQN), with only Double DQNs and Dueling networks, to evaluate the self-play performance of the agents. We compare 3 Rainbow agents with varying history lengths of 1, 3, and 5 steps. We also train a Rainbow agent with $\epsilon$-greedy exploration instead of Noisy Networks to evaluate the value of Noisy Network exploration. Additionally we train 2 Simplified Action Decoder (SAD) agents to evaluate the performance of the SAD algorithm in the Hanabi environment. We will compare the performance and sample efficiency of the agents with the various improvements included in the Rainbow and SAD algorithms.
+
+All learning agents will be trained using the same DQN framework programmed in Pytorch and TorchRL \cite{bouTorchRLDatadrivenDecisionmaking2023}, with the same hyperparameters, to ensure a fair comparison. The agents will be trained using the Adam optimizer with a learning rate of 0.0001 and a batch size of 256. The agents will be trained using a replay buffer of size 10000 and a soft target network update frequency 1 with $\tau=0.005$. The agents will be trained using a linear $\epsilon$-greedy policy(besides Rainbow) from 1.0 to 0.01 over training. For all algorithms, we burn 1000 steps into the replay buffer before starting training.  The agents utilize Independent Q-Learning, where each agent maintains its Q-function and policy to learn a joint policy.
+
+\subsection*{Training Setup}
+This study considers sample efficiency and generalization of agents to unseen partners as the primary evaluation criteria. Agents will be trained in a sample-limited setting, where the number of experiences seen by the agent is limited to 30M steps. This number is decided based on the paper by \textcite{bardHanabiChallengeNew2020a}, which used 100M as a limit for the full game. Hanabi-small has a state space of 30 cards, which is 1/3 of the full game, so we will use 1/3 of the training steps.
+
+\subsection*{Evaluation Metrics}
+The agents' performance will be evaluated based on their ability to score a high score in the game. We will also evaluate the training curves to determine the sample efficiency of the agents. We will compare the agents' performance with the various improvements to the DQN algorithm, such as Noisy Networks, Distributional Deep-Q-Networks, and Multi-Step Learning.
+
+We will also allow the agents to play together in a two-player self-play version of Hanabi to evaluate their performance in a cooperative setting with the other learning agents in an AD-Hoc Teamplay or cross-play(XP) setting.
+
+We evaluated all agents over 1000 episodes and considered the average and standard deviation of the final score as the primary evaluation metric.
